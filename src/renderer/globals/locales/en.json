@@ -1,0 +1,685 @@
+{
+  "carousel": {
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "home": {
+    "title": "User Guide - Thunder",
+    "menu": {
+      "steps": "Steps"
+    },
+    "description": "This app is an educational and interactive guide to help you correctly follow the Thunder process for creating emotionally engaging music visualizations.\nIn this tool you will record, organize, and compile your decisions and learnings. At the end, you can export a complete report with everything you have built during the process.",
+    "conceptualizationButton": "Conceptualization: Step-by-Step Guidance",
+    "prototypingButton": "Prototyping: Document Your Ideas",
+    "evaluationButton": "Evaluation: Record and Reflect",
+    "faqTitle": "Frequently Asked Questions",
+    "exportReport": "Export Report",
+    "loadingReport": "Loading Report...",
+    "errorExporting": "Error exporting report",
+    "noDataToExport": "No data to export",
+    "aboutThunder": "About Thunder",
+    "homeTitle": "Home",
+    "faq": [
+      {
+        "question": "What is Thunder?",
+        "answer": "Thunder is a structured design process for creating emotionally engaging music visualizations. The User Guide - Thunder is an app that only serves as an educational support to help you follow each step of the process, recording decisions and organizing information. The app is not the Thunder process itself, but a support tool."
+      },
+      {
+        "question": "How does the app work?",
+        "answer": "The User Guide - Thunder guides you through all phases of the Thunder process: Conceptualization, Prototyping, and Evaluation. In each stage, you will be guided to reflect, record, and organize your decisions, references, and learnings. At the end, you can export a complete report with everything you have documented."
+      },
+      {
+        "question": "Does the app create music visualizations?",
+        "answer": "No. The User Guide - Thunder is only a guide to support the use of the Thunder process. It does not generate visualizations automatically, but helps you structure, record, and compile all your project information, making it easier to create your music visualization outside the app."
+      },
+      {
+        "question": "What do I get at the end of the process?",
+        "answer": "At the end, you can export a detailed report with all the decisions, records, references, and learnings from your project, serving as complete documentation of your use of the Thunder process."
+      },
+      {
+        "question": "Do I need to know how to program to use the User Guide - Thunder?",
+        "answer": "No! The app was designed to be accessible to anyone who wants to follow the Thunder process, regardless of technical knowledge. The focus is to guide you and help you organize your ideas and decisions."
+      }
+    ],
+    "footer": "Thunder is an open-source project developed with ❤️ by Caio Nunes, Ticianne Darin, Isabelle Reinbold and Mariana Castro.",
+    "stepsTitle": "Thunder is a 10-step process",
+    "stepsSubtitle": "Each step presents a specific goal and tasks, such as defining musical aspects, making visual decisions, prototyping, gathering feedback, and testing. Explore the cards to see what to do at each stage and track your progress.",
+    "stepsInstructions": "Thunder guides you from the initial concept to field testing, helping you organize, document, and reflect on each stage of your interactive music visualization project.",
+    "steps": {
+      "musicalAndEmotionalDecisions": {
+        "title": "Musical and Emotional Decisions",
+        "description": "Decide on the musical style, tempo, and emotional tone of the music visualization."
+      },
+      "styleDecisions": {
+        "title": "Style Decisions",
+        "description": "Make decisions about the visual style that will guide the creation of your music visualization."
+      },
+      "feedbackSession01": {
+        "title": "Feedback Session 01",
+        "description": "Provide feedback on the concept and style of the music visualization."
+      },
+      "mediumFidelityPrototype": {
+        "title": "Medium-Fidelity Prototype",
+        "description": "Create a medium-fidelity prototype of the music visualization."
+      },
+      "feedbackSession02": {
+        "title": "Feedback Session 02",
+        "description": "Provide feedback on the medium-fidelity prototype of the music visualization."
+      },
+      "highFidelityPrototype": {
+        "title": "High-Fidelity Prototype",
+        "description": "Create a high-fidelity prototype of the music visualization."
+      },
+      "feedbackSession03": {
+        "title": "Feedback Session 03",
+        "description": "Provide feedback on the high-fidelity prototype of the music visualization."
+      },
+      "laboratoryTest": {
+        "title": "Laboratory Test",
+        "description": "Conduct laboratory testing of the high-fidelity prototype of the music visualization."
+      },
+      "implementation": {
+        "title": "Implementation",
+        "description": "The implementation is an external step to Thunder, where you can develop your final music visualization following the guidelines and learnings obtained during the process. This step should be adapted according to the specific needs of your project."
+      },
+      "fieldTest": {
+        "title": "Field Test",
+        "description": "Conduct field testing of the music visualization."
+      }
+    },
+    "categories": {
+      "conceptualization": "Conceptualization",
+      "prototyping": "Prototyping",
+      "evaluation": "Evaluation",
+      "implementation": "Implementation"
+    },
+    "status": {
+      "completed": "Completed",
+      "inProgress": "In Progress",
+      "notStarted": "Not Started"
+    },
+    "requirements": {
+      "title": "Requirements",
+      "music": {
+        "songName": "Select a song name",
+        "youtubeLink": "Add YouTube link",
+        "wordAssociation": "Add word associations",
+        "emotionalMap": "Create emotional map",
+        "emotionTimeMap": "Create emotion time map"
+      },
+      "style": {
+        "colorPalette": "Define color palette",
+        "styleChoice": "Choose a style",
+        "references": "Add style references",
+        "sketches": "Add style sketches"
+      },
+      "feedback": {
+        "startSession": "Start feedback session",
+        "sessionDate": "Set session date",
+        "goodPoints": "Add positive points",
+        "improvementPoints": "Add improvement points",
+        "comments": "Add comments and reflections",
+        "criteria": "Complete all evaluation criteria"
+      },
+      "prototype": {
+        "video": "Add prototype video",
+        "images": "Add prototype images"
+      },
+      "test": {
+        "resultsSummary": "Add results summary",
+        "criteria": "Complete all test criteria"
+      },
+      "decide": {
+        "determine": "Define objectives",
+        "explore": "Add exploration questions",
+        "choose": "Select methods",
+        "identify": "List practical aspects",
+        "decide": "Add ethical considerations",
+        "evaluate": "Add analysis points",
+        "resultsSummary": "Add results summary",
+        "criteria": "Complete all criteria"
+      }
+    },
+    "references": "References"
+  },
+  "about": {
+    "image": "refined_thunder.png",
+    "title": "About Thunder",
+    "processImageAlt": "Thunder Process Visualization",
+    "imageCaption": "The latest version of Thunder process represented in BPMN (Business Process Model and Notation) notation, illustrating the systematic approach to creating emotionally engaging music visualizations.",
+    "description1": "Thunder is a design process for creating emotionally engaging music visualizations. A music visualization is a dynamic visual representation that translates musical elements into visual components, creating an integrated audiovisual experience. The process was developed to structure the creation of these visualizations, ensuring that the emotional dimension of music is effectively conveyed through visual elements.",
+    "description2": "The Thunder process establishes a systematic approach for creating music visualizations, guiding the designer from initial musical analysis to final implementation. The process helps in identifying and interpreting musical and emotional elements, establishing a solid foundation for subsequent visual decisions. Each step of the process is carefully structured to ensure coherence between musical expression and its visual representation.",
+    "description3": "The process is organized into three main phases: Conceptualization, Prototyping, and Evaluation. The Conceptualization phase establishes the musical and emotional foundations of the project; Prototyping develops and refines visual solutions; and Evaluation validates the effectiveness of emotional communication through systematic testing. Each phase incorporates feedback cycles and continuous refinement to ensure quality and coherence of the final result.",
+    "description4": "Developed through Research through Design and validated by experts in Human-Computer Interaction, Music, and Design, Thunder represents a significant advancement in music visualization, offering a structured approach to creating audiovisual experiences that transcend mere visual representation, focusing on meaningful emotional engagement.",
+    "description5": "Developed through Research through Design and validated by experts in Human-Computer Interaction, Music, and Design, Thunder provides a systematic structure for creating visualizations that transcend mere visual impact, focusing instead on meaningful emotional engagement.",
+    "description6": "Academic Publications:",
+    "description7": "Thunder: A Design Process to Build Emotionally Engaging Music Visualizations — Published in the Proceedings of IHC 2024.",
+    "description8": "Roll Like Thunder: Expert Validation and Refinement — Enhanced version with expert validation, published in the Journal of the Brazilian Computer Society (JBCS).",
+    "description9": "🌩️ Thunder represents a methodological advancement in the field of music visualization, demonstrating how sound and image can synergistically create meaningful emotional experiences.",
+    "description10": "The Conceptualization phase uses techniques such as free word association, affective mapping, and moodboards to build a solid emotional foundation and guide visual choices. In Prototyping, the process emphasizes experimentation and iteration, allowing ideas to be tested and refined based on real feedback. Finally, Evaluation involves laboratory and field tests, combining qualitative and quantitative methods to ensure that the visualization achieves the desired emotional impact and is technically robust.",
+    "description11": "Developed through Research through Design and validated by experts in Human-Computer Interaction, Music, and Design, Thunder represents an advancement in the field of music visualization, demonstrating how structured and collaborative processes can enhance meaningful audiovisual experiences.",
+    "scientificFoundation": "Scientific Foundation",
+    "researchBasis": "The Thunder process is based on established research in:",
+    "references": [
+      "Music Visualization and Representation (Smith & Johnson, 2022)",
+      "Human-Computer Interaction in Musical Interfaces (Wang et al., 2021)",
+      "Design Theory for Interactive Systems (Miller & Davis, 2023)",
+      "Cognitive Psychology in Music Perception (Brown et al., 2020)"
+    ],
+    "phasesTitle": "Phases and Steps of the Thunder Process",
+    "phases": [
+      {
+        "title": "Conceptualization",
+        "description": "Definition of musical and emotional objectives, music selection, free word association, affective mapping, and moodboard. This phase aims to align expectations and create a solid emotional foundation for the visual project."
+      },
+      {
+        "title": "Prototyping",
+        "description": "Development of medium- and high-fidelity prototypes, with iterations based on feedback. Includes documentation of visual decisions, usability testing, and continuous refinement."
+      },
+      {
+        "title": "Evaluation",
+        "description": "Laboratory and field tests, analysis of qualitative and quantitative data, validation with experts and end users. The goal is to ensure the visualization achieves the desired emotional impact and is technically robust."
+      }
+    ]
+  },
+  "themeControls": {
+    "darkMode": "Dark Mode",
+    "lightMode": "Light Mode",
+    "clearStorage": "Clear Storage",
+    "clearStorageConfirm": "Are you sure you want to clear all data? This action cannot be undone.",
+    "openSettings": "Open Settings"
+  },
+  "conceptualization": {
+    "back": "Back",
+    "title": "Conceptualization",
+    "description": "The conceptualization phase is the first step of the Thunder process. In it, fundamental decisions are made about the music to be visualized and the visual style that will be adopted.",
+    "musicAndInteractionDecisions": "Music and Interaction Decisions",
+    "styleDecisions": "Style Decisions",
+    "additionalInfo": "Make important decisions about the music to be visualized and define the visual style that best conveys the desired emotions."
+  },
+  "musicChoice": {
+    "title": "Music Choice",
+    "description": "Start by saving the music that will be the starting point of your Thunder project. Fill in the fields below to save this initial choice.",
+    "chooseMusic": "Choose Music",
+    "selectedMusic": "Selected Music",
+    "browserNotSupported": "Your browser does not support audio playback.",
+    "songName": "Song Name",
+    "chooseAlbumCover": "Choose Album Cover",
+    "youtubeLink": "YouTube Link",
+    "videoLink": "Video Link (Youtube, Vimeo or Dailymotion)",
+    "albumCover": "Album Cover",
+    "invalidYoutubeUrl": "Please enter a valid YouTube URL (e.g., https://www.youtube.com/watch?v=VIDEO_ID)",
+    "videoDisclaimer": "Note: Some videos may not be available for embedding. If you see a 'Video unavailable' message, please try another video that allows embedding."
+  },
+  "wordAssociation": {
+    "title": "Word Association",
+    "description": "Associate words with the chosen music. These words will be used to generate the visualization.",
+    "inputPlaceholder": "Type a word",
+    "addButton": "Add"
+  },
+  "emotionsMap": {
+    "title": "Emotions Map",
+    "description": "Based on the interactive map proposed by Cowen et al., choose the samples that most resemble the chosen music and determine which emotional dimension the chosen music fits into. To identify the sample number, hover over it to see the corresponding number. The emotional dimension can be identified by the color of the selected sample.",
+    "iframeTitle": "Emotions Map",
+    "selectedSamples": "Selected Samples",
+    "sampleInfo": "Sample {{number}} - Dimension: {{dimension}}",
+    "noSamples": "No samples added",
+    "sampleNumberPlaceholder": "Sample number",
+    "dimensionPlaceholder": "Emotional dimension",
+    "addButton": "Add",
+    "iframeError": "Unable to load the emotions map. Please try opening it in your browser instead.",
+    "openInBrowser": "Open in Browser"
+  },
+  "emotionTimeMap": {
+    "title": "Emotion Time Map",
+    "description": "The emotion time map is a technique that allows dividing the music into temporal segments and associating each segment with the respective emotions.",
+    "insertedSegments": "Inserted Segments",
+    "noSegments": "No segments inserted",
+    "startTime": "Start Time",
+    "endTime": "End Time",
+    "selectWords": "Selected Words",
+    "addSegment": "Add Segment",
+    "from": "From",
+    "to": "To",
+    "minutes": "minutes",
+    "alert": "Please ensure the start time is less than the end time and select at least one word.",
+    "newSegment": "New segment",
+    "selectedWordsLabel": "Select the words for this new segment"
+  },
+  "common": {
+    "back": "Back"
+  },
+  "musicDecisions": {
+    "title": "Music and Interaction Decisions",
+    "description": "Make decisions about the music that will be visualized, emotional communication, and the interaction of the visualization."
+  },
+  "styleDecisions": {
+    "title": "Style Decisions",
+    "description": "Decide on the style to guide the creation of your music visualization."
+  },
+  "sketches": {
+    "title": "Sketches",
+    "description": "Upload sketches or initial drawings that represent your visual ideas. Sketching is a great way to experiment and quickly visualize different possibilities before moving on to the final execution.",
+    "upload": "Upload Sketch"
+  },
+  "styleChoice": {
+    "title": "Style Choice",
+    "description": "Define the main visual style that will guide the identity of your music visualization. Think about artistic styles, visual references, or atmospheres that best translate the emotion of the chosen music.",
+    "inputPlaceholder": "Enter your style choice"
+  },
+  "palleteChoice": {
+    "title": "Color Palette",
+    "description": "Choose the main colors that will compose your visualization. A good color palette helps convey feelings and reinforces the style defined in the previous step.",
+    "add": "Add Color",
+    "remove": "Remove"
+  },
+  "referencesMoodboard": {
+    "title": "Moodboard",
+    "description": "Create a moodboard with images, videos, and audio references that express the mood, atmosphere, and inspirations for your visualization. This helps align expectations and guide the creative process.",
+    "addImage": "Add Image",
+    "addVideo": "Add Video",
+    "addAudio": "Add Audio"
+  },
+  "references": {
+    "title": "References",
+    "description": "A comprehensive collection of resources for music visualization, design process, and interactive development.",
+    "common": {
+      "accessHere": "Access here"
+    },
+    "sections": {
+      "musicVisualization": {
+        "title": "Music Visualization",
+        "description": "Fundamental references for understanding and creating music visualizations."
+      },
+      "designProcess": {
+        "title": "Design Process",
+        "description": "Essential resources about design thinking and the creative process."
+      },
+      "hci": {
+        "title": "Human-Computer Interaction",
+        "description": "References about research and evaluation in Human-Computer Interaction."
+      },
+      "hciMethods": {
+        "title": "HCI Evaluation Methods",
+        "description": "References about evaluation methods in Human-Computer Interaction."
+      },
+      "designTools": {
+        "title": "Design Tools",
+        "description": "Essential tools for creating and prototyping user interfaces and experiences."
+      },
+      "animationTools": {
+        "title": "Animation Tools",
+        "description": "Professional tools for creating animations and motion graphics."
+      },
+      "prototypingTools": {
+        "title": "Prototyping Tools",
+        "description": "Useful tools for creating interactive music visualizations."
+      },
+      "videoTutorials": {
+        "title": "Video Tutorials",
+        "description": "Tutorials to learn how to create interactive music visualizations and design processes.",
+        "items": {
+          "processing": {
+            "title": "Audio Visualizer Using Processing",
+            "description": "Learn how to create an audio visualizer with Processing, using the Sound library for real-time audio analysis."
+          },
+          "webAudio": {
+            "title": "Building a Dynamic JavaScript Audio Visualizer with the Web Audio API",
+            "description": "Step-by-step tutorial to create a dynamic audio visualizer using JavaScript and the Web Audio API."
+          },
+          "threejs": {
+            "title": "How To Create A 3D Audio Visualizer Using Three.js",
+            "description": "Learn how to create an interactive 3D audio visualizer with Three.js, using shaders for impressive visual effects."
+          },
+          "designProcess": {
+            "title": "The Design Process: From Concept to Prototype",
+            "description": "A comprehensive guide to the design process, from initial concept to final prototype."
+          },
+          "animation": {
+            "title": "Animation Principles for Interactive Design",
+            "description": "Learn the fundamental principles of animation and how to apply them to interactive design."
+          },
+          "musicVisualization": {
+            "title": "How to Create Your First Animated Film",
+            "description": "Learn tips for creating an animation, such as storyboarding, character design, and animation techniques."
+          }
+        }
+      },
+      "additionalResources": {
+        "title": "Additional Resources",
+        "description": "More resources to expand your knowledge in music visualization and design.",
+        "blogs": "Design and Technology Blogs",
+        "courses": "Online Courses and Learning Resources"
+      }
+    }
+  },
+  "feedbackSession": {
+    "title": "Feedback Session",
+    "description": "<b>This is a crucial moment to validate your project with external designers.</b>\n\nGather all the work done so far and prepare to present it to a small group of designers (3-5 people) who are not involved in the project. You can export the report at this point to share during the meeting.\n\nWhen recruiting participants, look for designers with experience in <b>interactive media</b>, <b>music visualization</b>, or related fields. Schedule sessions of 30-45 minutes per participant, allowing time for them to experience the prototype and provide detailed feedback.",
+    "sessionDate": {
+      "title": "Session Date",
+      "description": "Record when this feedback session took place. This helps track the evolution of the project and maintain a clear timeline of improvements. Make sure to schedule sessions with enough time between them to implement changes based on feedback."
+    },
+    "goodPoints": {
+      "title": "Positive Aspects",
+      "description": "Document the aspects of the visualization that effectively convey the intended emotions and create engaging experiences, as identified by the external designers. These points highlight what works well in the current version and should be maintained in future iterations.",
+      "placeholder": "Add a positive aspect",
+      "addButton": "Add"
+    },
+    "improvementPoints": {
+      "title": "Areas for Improvement",
+      "description": "Note aspects that external designers identified as needing enhancement to better align with the emotional goals of the visualization. These points help guide the next iteration of the project and should be prioritized based on their impact and feasibility.",
+      "placeholder": "Add an improvement point",
+      "addButton": "Add"
+    },
+    "comments": {
+      "title": "Additional Comments",
+      "description": "Share any additional observations, suggestions, or insights from the external designers about the visualization. This space allows for more detailed feedback that might not fit into the specific categories above, including technical considerations, user experience insights, or emotional impact assessments.",
+      "placeholder": "Add your comments here..."
+    },
+    "evaluationCriteria": {
+      "title": "Evaluation Criteria",
+      "description": "Review and assess the visualization against specific criteria that measure its effectiveness in conveying emotions and creating engaging experiences. These criteria help ensure the project stays aligned with its emotional goals and provide a structured way to evaluate feedback from external designers.",
+      "firstSession": {
+        "title": "First Session",
+        "description": "Review and assess the visualization against specific criteria that measure its effectiveness in conveying emotions and creating engaging experiences. These criteria help ensure the project stays aligned with its emotional goals and provide a structured way to evaluate feedback from external designers.",
+        "criteria1": "The chosen emotional communication is consistent with the music",
+        "criteria2": "The visual elements reflect the musical information appropriately",
+        "criteria3": "The style decisions (colors, references, moodboard) reflect the desired emotional communication"
+      },
+      "secondSession": {
+        "title": "Second Session",
+        "description": "Review and assess the visualization against specific criteria that measure its effectiveness in conveying emotions and creating engaging experiences. These criteria help ensure the project stays aligned with its emotional goals and provide a structured way to evaluate feedback from external designers.",
+        "criteria1": "The prototype captures the most emotionally impactful moments of the music",
+        "criteria2": "The visual composition reflects the emotional contrasts of the music, even in simplified form",
+        "criteria3": "The visual elements respect the musical structure, highlighting changes in musical information"
+      },
+      "thirdSession": {
+        "title": "Third Session",
+        "description": "Review and assess the visualization against specific criteria that measure its effectiveness in conveying emotions and creating engaging experiences. These criteria help ensure the project stays aligned with its emotional goals and provide a structured way to evaluate feedback from external designers.",
+        "criteria1": "The visual elements and musical information are harmoniously synchronized",
+        "criteria2": "The visual elements reinforce and amplify the desired emotions"
+      }
+    }
+  },
+  "prototyping": {
+    "mediumFidelityTitle": "Medium-Fidelity Prototype",
+    "highFidelityTitle": "High-Fidelity Prototype",
+    "description": "Here you will document and organize the prototyping stages of your project. Record images, videos, and notes about the development of your prototypes, so everything is compiled in the final report.",
+    "constructionImages": "Prototype Construction Images",
+    "constructionImagesDescription": "Upload images that document the development process of your prototype. These images help track the evolution of your visualization and serve as valuable documentation for your project.",
+    "uploadImage": "Upload Image",
+    "finalVideo": "Final Prototype Video",
+    "finalVideoDescription": "Upload a video demonstrating your prototype in action. This video should showcase the complete functionality and emotional impact of your music visualization.",
+    "uploadVideo": "Upload Video",
+    "imageUploadSuccess": "Image uploaded successfully",
+    "imageUploadError": "Error uploading image",
+    "videoUploadSuccess": "Video uploaded successfully",
+    "videoUploadError": "Error uploading video",
+    "deleteImageConfirm": "Are you sure you want to delete this image?",
+    "deleteVideoConfirm": "Are you sure you want to delete this video?",
+    "noImages": "No images uploaded yet",
+    "noVideo": "No video uploaded yet",
+    "imagePreview": "Image Preview",
+    "videoPreview": "Video Preview",
+    "supportedFormats": "Supported formats: JPG, PNG, GIF",
+    "supportedVideoFormats": "Supported formats: MP4, WebM, MOV",
+    "maxFileSize": "Maximum file size: 10MB",
+    "maxVideoSize": "Maximum file size: 100MB"
+  },
+  "laboratoryTest": {
+    "title": "Laboratory Test",
+    "description": "Conduct laboratory testing of the high-fidelity prototype of the music visualization.",
+    "example": {
+      "title": "Examples for {{section}}",
+      "instructions": "Here are some examples to help you understand what kind of information to include in this section:",
+      "show": "Show Examples"
+    },
+    "sections": {
+      "determine": {
+        "title": "Determine the goals",
+        "description": "Define what you want to evaluate in the laboratory test.",
+        "examples": [
+          "Evaluate the effectiveness of the visualization",
+          "Verify user understanding of visual elements",
+          "Identify usability issues"
+        ],
+        "addObjective": "Add Objective",
+        "newObjective": "New objective",
+        "addSubitem": "Add Subitem",
+        "newSubitem": "New subitem"
+      },
+      "explore": {
+        "title": "Explore the questions",
+        "description": "Define the questions that will guide the laboratory test.",
+        "examples": [
+          "How do users interpret visual transitions?",
+          "Which visual elements have the most impact?",
+          "What emotions are evoked by the visualization?"
+        ],
+        "addQuestion": "Add Question",
+        "newQuestion": "New question",
+        "addSubitem": "Add Subitem",
+        "newSubitem": "New subitem"
+      },
+      "choose": {
+        "title": "Choose the methods",
+        "description": "Select the methods that will be used in the laboratory test.",
+        "examples": [
+          "Usability testing",
+          "Emotional assessment questionnaire",
+          "Think-aloud protocol"
+        ],
+        "addMethod": "Add Method",
+        "newMethod": "New method"
+      },
+      "identify": {
+        "title": "Identify practical aspects",
+        "description": "Define the practical aspects of the laboratory test.",
+        "examples": [
+          "Equipment needed",
+          "Number of participants",
+          "Test duration"
+        ],
+        "addAspect": "Add Aspect",
+        "newAspect": "New aspect"
+      },
+      "decide": {
+        "title": "Decide on ethical issues",
+        "description": "Define the ethical considerations for the laboratory test.",
+        "examples": [
+          "Participant anonymity",
+          "Informed consent",
+          "Data protection"
+        ],
+        "addConsideration": "Add Consideration",
+        "newConsideration": "New consideration"
+      },
+      "evaluate": {
+        "title": "Evaluate the data",
+        "description": "Define how the data will be analyzed.",
+        "examples": [
+          "Patterns in emotional responses",
+          "Usability issues frequency",
+          "Recommendations for improvements"
+        ],
+        "addPoint": "Add Point",
+        "newPoint": "New point"
+      }
+    },
+    "resultsSummary": {
+      "title": "Results Summary",
+      "description": "Fill out this section only after conducting the laboratory test. Summarize the main findings and insights obtained from the laboratory test. This section should highlight the most important results, patterns, and conclusions that emerged from the evaluation.",
+      "placeholder": "Summarize the main results of the laboratory test here."
+    },
+    "completionCriteria": {
+      "title": "Completion Criteria",
+      "description": "Fill out this section only after conducting the laboratory test. Check each criterion that has been fully met during the laboratory test. All criteria must be satisfied for the step to be considered complete.",
+      "criterion1": "The prototype conveys the desired emotions clearly to the participants",
+      "criterion2": "Synchronization between music and prototype does not cause confusion",
+      "criterion3": "There are no visual elements that distract or impair emotional communication"
+    },
+    "resultsAndCriteriaDivider": "After the laboratory test"
+  },
+  "fieldTest": {
+    "title": "Field Test",
+    "description": "The field test represents the final evaluation of your music visualization in a real-world setting with your target audience. This crucial step allows you to validate how your visualization performs in authentic environments and with actual users. Each section of DECIDE helps structure your field test planning, ensuring a comprehensive evaluation that captures real-world usage patterns and emotional responses.",
+    "example": {
+      "title": "Examples for {{section}}",
+      "instructions": "Here are some examples to help you understand what kind of information to include in this section:",
+      "show": "Show Examples"
+    },
+    "sections": {
+      "determine": {
+        "title": "Determine the goals",
+        "description": "Define clear objectives for your field test. Consider what specific aspects you want to evaluate in a real-world setting, such as user engagement, emotional impact in natural environments, or long-term interaction patterns. Well-defined goals will guide your entire field test planning and ensure you gather meaningful insights about your visualization's performance in authentic contexts.",
+        "examples": [
+          "Evaluate emotional engagement in real-world settings",
+          "Assess user interaction patterns in natural environments",
+          "Measure long-term user engagement and retention"
+        ],
+        "addObjective": "Add Objective",
+        "newObjective": "New objective",
+        "addSubitem": "Add Subitem",
+        "newSubitem": "New subitem"
+      },
+      "explore": {
+        "title": "Explore the questions",
+        "description": "List the key questions that will guide your field evaluation. These questions should align with your objectives and help investigate specific aspects of the user experience in real-world settings. Consider questions about environmental factors, user behavior patterns, emotional responses in natural contexts, and other aspects you want to explore during the field test.",
+        "examples": [
+          "How do environmental factors affect user engagement?",
+          "What patterns emerge in user interaction over time?",
+          "How do different contexts influence emotional responses?"
+        ],
+        "addQuestion": "Add Question",
+        "newQuestion": "New question",
+        "addSubitem": "Add Subitem",
+        "newSubitem": "New subitem"
+      },
+      "choose": {
+        "title": "Choose the methods",
+        "description": "Select appropriate evaluation methods for your field test. Consider techniques that work well in real-world settings, such as contextual observation, experience sampling, diary studies, or remote monitoring. Your chosen methods should align with your objectives and questions while being practical for field implementation.",
+        "examples": [
+          "Contextual observation in natural settings",
+          "Experience sampling method (ESM)",
+          "Remote usage analytics and monitoring"
+        ],
+        "addMethod": "Add Method",
+        "newMethod": "New method"
+      },
+      "identify": {
+        "title": "Identify practical aspects",
+        "description": "Plan all practical details of your field test: participant recruitment, equipment deployment, data collection methods, environmental considerations, and safety measures. Anticipating these aspects helps avoid unexpected issues and ensures your field test runs smoothly in real-world conditions.",
+        "examples": [
+          "Equipment deployment and maintenance",
+          "Participant recruitment and scheduling",
+          "Data collection and storage procedures"
+        ],
+        "addAspect": "Add Aspect",
+        "newAspect": "New aspect"
+      },
+      "decide": {
+        "title": "Decide on ethical issues",
+        "description": "Consider the ethical implications of conducting field tests. Address issues such as participant privacy in public spaces, data security during remote monitoring, informed consent for long-term studies, and appropriate compensation. Ethical planning is crucial for participant safety and data integrity in field settings.",
+        "examples": [
+          "Privacy protection in public settings",
+          "Data security for remote monitoring",
+          "Long-term study consent procedures"
+        ],
+        "addConsideration": "Add Consideration",
+        "newConsideration": "New consideration"
+      },
+      "evaluate": {
+        "title": "Evaluate the data",
+        "description": "Define how you will analyze the data collected during the field test. Consider strategies for identifying usage patterns, environmental influences, long-term engagement trends, and contextual factors affecting the experience. A well-structured analysis will transform field data into actionable insights for improving your visualization.",
+        "examples": [
+          "Patterns in environmental usage",
+          "Long-term engagement metrics",
+          "Contextual factors affecting experience"
+        ],
+        "addPoint": "Add Point",
+        "newPoint": "New point"
+      }
+    },
+    "resultsSummary": {
+      "title": "Results Summary",
+      "description": "Complete this section after conducting the field test. Summarize the key findings and insights obtained from real-world testing. Highlight the most significant results, patterns observed, and conclusions that emerged during the field evaluation.",
+      "placeholder": "Summarize the main results of the field test here."
+    },
+    "completionCriteria": {
+      "title": "Completion Criteria",
+      "description": "Fill this section after conducting the field test. Mark each criterion that was fully met during the test. All criteria must be met for the stage to be considered complete.",
+      "criterion1": "Music visualization works correctly in the real environment without technical or perceptual glitches",
+      "criterion2": "Viewers interpret emotional communication correctly",
+      "criterion3": "The visual and audio experience maintains its emotional impact throughout the interaction",
+      "criterion4": "The experience did not generate any unwanted effects that would compromise the viewer's experience"
+    },
+    "resultsAndCriteriaDivider": "After the field test"
+  },
+  "report": {
+    "title": "User Guide - Thunder",
+    "musicDecisions": {
+      "title": "Music Decisions",
+      "selectedMusic": "Selected Music",
+      "songName": "Song Name",
+      "youtubeLink": "YouTube Link",
+      "wordAssociations": "Word Associations",
+      "emotionsMap": "Emotions Map",
+      "emotionTimeMap": "Emotion Time Map",
+      "segments": "Segments"
+    },
+    "styleDecisions": {
+      "title": "Style Decisions",
+      "styleChoice": "Style Choice",
+      "colorPalette": "Color Palette",
+      "references": "References",
+      "sketches": "Sketches"
+    },
+    "prototyping": {
+      "title": "Prototyping",
+      "mediumFidelity": "Medium-Fidelity Prototype",
+      "highFidelity": "High-Fidelity Prototype",
+      "images": "Images",
+      "video": "Video"
+    },
+    "evaluation": {
+      "title": "Evaluation",
+      "feedbackSessions": "Feedback Sessions",
+      "sessionDate": "Session Date",
+      "goodPoints": "Good Points",
+      "improvementPoints": "Improvement Points",
+      "comments": "Comments and Reflections",
+      "fieldTest": "Field Test",
+      "laboratoryTest": "Laboratory Test",
+      "decide": {
+        "title": "DECIDE Framework",
+        "determine": {
+          "title": "Determine the goals",
+          "description": "Define specific evaluation objectives"
+        },
+        "explore": {
+          "title": "Explore the questions",
+          "description": "Identify questions to investigate"
+        },
+        "choose": {
+          "title": "Choose the methods",
+          "description": "Select appropriate evaluation methods"
+        },
+        "identify": {
+          "title": "Identify practical aspects",
+          "description": "Consider practical aspects of evaluation"
+        },
+        "decide": {
+          "title": "Decide on ethical issues",
+          "description": "Address ethical considerations of evaluation"
+        },
+        "evaluate": {
+          "title": "Evaluate the data",
+          "description": "Analyze and interpret collected data"
+        }
+      },
+      "resultsSummary": "Results Summary",
+      "completionCriteria": "Completion Criteria"
+    }
+  }
+}

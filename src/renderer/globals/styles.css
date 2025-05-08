@@ -1,0 +1,191 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Light theme variables */
+  --background-color: #FFFFFF;
+  --text-color: #8A1A5C;
+  --primary-color: #FF80C2;
+  --secondary-color: #0066FF;
+  --accent-color: #EA412D;
+  --border-color: rgba(255, 128, 194, 0.5);
+  --hover-color: #FFB3D9;
+  --button-text-color: #FFFFFF;
+}
+
+[data-theme="dark"] {
+  --background-color: #1A0F13;
+  --text-color: #FFB3D9;
+  --primary-color: #FF80C2;
+  --secondary-color: #4D99FF;
+  --accent-color: #F07A6A;
+  --border-color: rgba(255, 128, 194, 0.5);
+  --hover-color: #2E0F0A;
+  --button-text-color: #FFFFFF;
+}
+
+/* Focus styles */
+:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (forced-colors: active) {
+  :focus-visible {
+    outline: 2px solid CanvasText;
+  }
+
+  button,
+  a {
+    border: 1px solid CanvasText;
+  }
+}
+
+/* Stage-specific variables */
+[data-stage="conceptualization"] {
+  --background-color: #F0F7FF;
+  --text-color: #002B4D;
+  --primary-color: #0066FF;
+  --secondary-color: #4D99FF;
+  --accent-primary: #4D99FF;
+  --accent-secondary: #80B3FF;
+  --accent-tertiary: #B3CCFF;
+  --border-color: rgba(0, 102, 255, 0.5);
+  --hover-color: #E6F0FF;
+  --button-primary: #0066FF;
+  --button-secondary: #4D99FF;
+  --button-text-color: #FFFFFF;
+}
+
+[data-stage="prototyping"] {
+  --background-color: #FFF5F3;
+  --text-color: #5A1A12;
+  --primary-color: #EA412D;
+  --secondary-color: #F07A6A;
+  --accent-primary: #F07A6A;
+  --accent-secondary: #F5A69E;
+  --accent-tertiary: #FAD2CE;
+  --border-color: rgba(234, 65, 45, 0.5);
+  --hover-color: #FFF0ED;
+  --button-primary: #EA412D;
+  --button-secondary: #F07A6A;
+  --button-text-color: #FFFFFF;
+}
+
+[data-stage="evaluation"] {
+  --background-color: #F5FAFC;
+  --text-color: #004D52;
+  --primary-color: #0097A7;
+  --secondary-color: #00BCD4;
+  --accent-primary: #00BCD4;
+  --accent-secondary: #4DD0E1;
+  --accent-tertiary: #80DEEA;
+  --border-color: rgba(0, 188, 212, 0.5);
+  --hover-color: #F0F7FA;
+  --button-primary: #0097A7;
+  --button-secondary: #00BCD4;
+  --button-text-color: #FFFFFF;
+}
+
+/* Ensure text is visible in high contrast mode */
+@media (forced-colors: active) {
+  * {
+    forced-color-adjust: none;
+  }
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  body {
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border-color: var(--border-color);
+  }
+
+  p {
+    font-weight: 400;
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
+  }
+
+  h1 {
+    font-weight: 700;
+    font-size: 2rem;
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
+  }
+
+  h2 {
+    font-weight: 600;
+    font-size: 1.5rem;
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
+  }
+
+  h3 {
+    font-weight: 500;
+    font-size: 1.25rem;
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
+  }
+
+  h4,
+  h5,
+  h6 {
+    font-weight: 400;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
+  }
+
+  #root {
+    isolation: isolate;
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  /* Utility classes for theme transitions */
+  .theme-transition {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  }
+}
