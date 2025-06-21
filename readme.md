@@ -7,7 +7,7 @@
 **Uma ferramenta de apoio para designers aplicarem o processo Thunder**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-blue.svg)](https://github.com/caionunes3000/thunder)
+[![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-blue.svg)](https://github.com/caionunespn/thunder-user-guide/releases/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)](https://reactjs.org/)
 [![Electron](https://img.shields.io/badge/Electron-191970?style=flat&logo=electron&logoColor=white)](https://www.electronjs.org/)
@@ -68,7 +68,7 @@ Mais do que um repositório, o guia oferece suporte operacional e conceitual em 
 
 1. **Clone o repositório**
    ```bash
-   git clone https://github.com/caionunes3000/thunder-user-guide.git
+   git clone https://github.com/caionunespn/thunder-user-guide.git
    cd thunder-user-guide
    ```
 
@@ -85,6 +85,8 @@ Mais do que um repositório, o guia oferece suporte operacional e conceitual em 
    # ou
    npm run dev
    ```
+
+   > **⚠️ Nota:** No modo de desenvolvimento, imagens e vídeos podem não carregar corretamente. Para visualizar mídia completa, utilize a versão de produção.
 
 ### Build para Produção
 
@@ -128,7 +130,7 @@ Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICE
 
 ## 👥 Autores
 
-- **Caio Nunes** - [caionunes3000@gmail.com](mailto:caionunes3000@gmail.com)
+- **Caio Nunes** - [caionunespn@gmail.com](mailto:caionunespn@gmail.com)
 - **Ticianne Darin** - Orientadora
 
 ## 🙏 Agradecimentos
@@ -141,5 +143,5 @@ Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICE
 ## 📞 Suporte
 
 Para dúvidas, sugestões ou problemas:
-- Abra uma [issue](https://github.com/caionunes3000/thunder-user-guide/issues)
-- Entre em contato: [caionunes3000@gmail.com](mailto:caionunes3000@gmail.com)
+- Abra uma [issue](https://github.com/caionunespn/thunder-user-guide/issues)
+- Entre em contato: [caionunespn@gmail.com](mailto:caionunespn@gmail.com)

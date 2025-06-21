@@ -15,7 +15,7 @@
     "preview": "electron-vite preview",
     "prod": "electron-vite preview",
     "postinstall": "electron-builder install-app-deps",
-    "build:all": "rm -rf dist dist-electron release && yarn build && electron-builder -mw"
+    "build:all": "rm -rf dist dist-electron release && yarn build && electron-builder -mwl"
   },
   "dependencies": {
     "@axe-core/react": "^4.8.5",
