@@ -9,6 +9,7 @@ import { DIRECTORIES, STORE_KEYS } from "../../globals/constants";
 import { MdAdd, MdDelete, MdImage, MdVideoLibrary } from "react-icons/md";
 import { UploadedFile } from "../../contexts/Thunder/interfaces";
 import type { ElectronAPI } from '../../types/electron';
+import { StatusTag } from "../../components/StatusTag";
 
 const Prototyping = () => {
   const { t } = useTranslation();
@@ -25,6 +26,20 @@ const Prototyping = () => {
   const { data, saveMediumPrototypingData, saveHighPrototypingData } = useThunder();
   const prototypeImages = data.prototyping[fidelity].images;
   const finalVideo = data.prototyping[fidelity].finalVideo;
+
+  const getConstructionImagesStatus = () => {
+    if (prototypeImages.length > 0) {
+      return 'completed';
+    }
+    return 'not-started';
+  };
+
+  const getFinalVideoStatus = () => {
+    if (finalVideo?.url) {
+      return 'completed';
+    }
+    return 'not-started';
+  };
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -109,7 +124,7 @@ const Prototyping = () => {
         }}
       >
         <h1
-          className="text-center leading-tight mb-8"
+          className="text-center leading-tight mb-8 flex flex-col items-center justify-center"
           style={{
             fontSize: typography.h1.size,
             fontWeight: typography.h1.weight,
@@ -117,6 +132,16 @@ const Prototyping = () => {
             color: mode === 'dark' ? modeColors.text.primary : stageColors.text.primary
           }}
         >
+          <span
+            className="flex items-center justify-center rounded-full text-white py-2 px-4 mb-4"
+            style={{
+              fontSize: typography.body.large.size,
+              lineHeight: typography.body.large.lineHeight,
+              backgroundColor: stageColors.text.primary
+            }}
+          >
+            {t('step')} {fidelity === "medium" ? "4" : "6"}
+          </span>
           {fidelity === "medium" ? t('prototyping.mediumFidelityTitle') : t('prototyping.highFidelityTitle')}
         </h1>
 
@@ -143,7 +168,7 @@ const Prototyping = () => {
           }}
         >
           <h2
-            className="text-left leading-tight mb-4"
+            className="flex items-end text-left leading-tight mb-4"
             style={{
               fontSize: typography.h2.size,
               fontWeight: typography.h2.weight,
@@ -152,6 +177,7 @@ const Prototyping = () => {
             }}
           >
             {t('prototyping.constructionImages')}
+            <StatusTag status={getConstructionImagesStatus()} />
           </h2>
           <p
             className="text-md text-black leading-relaxed mb-6"
@@ -227,7 +253,7 @@ const Prototyping = () => {
           }}
         >
           <h2
-            className="text-left leading-tight mb-4"
+            className="flex items-end text-left leading-tight mb-4"
             style={{
               fontSize: typography.h2.size,
               fontWeight: typography.h2.weight,
@@ -236,6 +262,7 @@ const Prototyping = () => {
             }}
           >
             {t('prototyping.finalVideo')}
+            <StatusTag status={getFinalVideoStatus()} />
           </h2>
           <p
             className="text-md text-black leading-relaxed mb-6"

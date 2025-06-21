@@ -1,14 +1,42 @@
 {
+  "step": "Step",
+  "stepSkip": {
+    "next": "Next",
+    "previous": "Previous",
+    "/conceptualization/musical-and-emotional-decisions": "Step 1 - Musical and Emotional Decisions",
+    "/conceptualization/style-decisions": "Step 2 - Style Decisions",
+    "/evaluation/feedback-session/1": "Step 3 - Feedback Session 01",
+    "/prototyping/medium": "Step 4 - Medium-Fidelity Prototype",
+    "/evaluation/feedback-session/2": "Step 5 - Feedback Session 02",
+    "/prototyping/high": "Step 6 - High-Fidelity Prototype",
+    "/evaluation/feedback-session/3": "Step 7 - Feedback Session 03",
+    "/evaluation/laboratory-test": "Step 8 - Laboratory Test",
+    "/implementation": "Step 9 - Implementation",
+    "/evaluation/field-test": "Step 10 - Field Test"
+  },
+  "evaluation": {
+    "didYouKnow1": "The evaluation in Thunder was developed to support you in achieving the emotional objectives proposed for the visualization. Use these steps to validate your decisions, provide clarity, and ensure that each step is truly fulfilling the desired purpose."
+  },
+  "status": {
+    "attention": "Attention",
+    "information": "Did you know?"
+  },
+  "implementation": {
+    "title": "Implementation",
+    "description": "The implementation is an external step to Thunder, where you can develop your final music visualization following the guidelines and learnings obtained during the process. This step should be adapted according to the specific needs of your project."
+  },
   "carousel": {
     "previous": "Previous",
     "next": "Next"
   },
   "home": {
-    "title": "User Guide - Thunder",
+    "title": "Thunder's User Guide",
     "menu": {
       "steps": "Steps"
     },
-    "description": "This app is an educational and interactive guide to help you correctly follow the Thunder process for creating emotionally engaging music visualizations.\nIn this tool you will record, organize, and compile your decisions and learnings. At the end, you can export a complete report with everything you have built during the process.",
+    "description1": "This app is an <strong>educational and interactive guide</strong> to help you correctly follow the <strong>Thunder process</strong> for creating <strong>emotionally engaging music visualizations</strong>.",
+    "description2": "In this tool you will <strong>record, organize, and compile</strong> your <strong>decisions and learnings</strong>. At the end, you can export a <strong>complete report</strong> with everything you have built during the process.",
+    "description3": "The Thunder's User Guide is an app that only serves as an educational support to help you follow each step of the process, recording decisions and organizing information. The app is <strong>not the Thunder process itself</strong>, but a <strong>support tool</strong>.",
     "conceptualizationButton": "Conceptualization: Step-by-Step Guidance",
     "prototypingButton": "Prototyping: Document Your Ideas",
     "evaluationButton": "Evaluation: Record and Reflect",
@@ -22,22 +50,22 @@
     "faq": [
       {
         "question": "What is Thunder?",
-        "answer": "Thunder is a structured design process for creating emotionally engaging music visualizations. The User Guide - Thunder is an app that only serves as an educational support to help you follow each step of the process, recording decisions and organizing information. The app is not the Thunder process itself, but a support tool."
+        "answer": "Thunder is a structured design process for creating emotionally engaging music visualizations. The Thunder's User Guide is an app that only serves as an educational support to help you follow each step of the process, recording decisions and organizing information. The app is not the Thunder process itself, but a support tool."
       },
       {
         "question": "How does the app work?",
-        "answer": "The User Guide - Thunder guides you through all phases of the Thunder process: Conceptualization, Prototyping, and Evaluation. In each stage, you will be guided to reflect, record, and organize your decisions, references, and learnings. At the end, you can export a complete report with everything you have documented."
+        "answer": "The Thunder's User Guide guides you through all phases of the Thunder process: Conceptualization, Prototyping, and Evaluation. In each stage, you will be guided to reflect, record, and organize your decisions, references, and learnings. At the end, you can export a complete report with everything you have documented."
       },
       {
         "question": "Does the app create music visualizations?",
-        "answer": "No. The User Guide - Thunder is only a guide to support the use of the Thunder process. It does not generate visualizations automatically, but helps you structure, record, and compile all your project information, making it easier to create your music visualization outside the app."
+        "answer": "No. The Thunder's User Guide is only a guide to support the use of the Thunder process. It does not generate visualizations automatically, but helps you structure, record, and compile all your project information, making it easier to create your music visualization outside the app."
       },
       {
         "question": "What do I get at the end of the process?",
         "answer": "At the end, you can export a detailed report with all the decisions, records, references, and learnings from your project, serving as complete documentation of your use of the Thunder process."
       },
       {
-        "question": "Do I need to know how to program to use the User Guide - Thunder?",
+        "question": "Do I need to know how to program to use the Thunder's User Guide?",
         "answer": "No! The app was designed to be accessible to anyone who wants to follow the Thunder process, regardless of technical knowledge. The focus is to guide you and help you organize your ideas and decisions."
       }
     ],
@@ -209,13 +237,16 @@
     "videoLink": "Video Link (Youtube, Vimeo or Dailymotion)",
     "albumCover": "Album Cover",
     "invalidYoutubeUrl": "Please enter a valid YouTube URL (e.g., https://www.youtube.com/watch?v=VIDEO_ID)",
-    "videoDisclaimer": "Note: Some videos may not be available for embedding. If you see a 'Video unavailable' message, please try another video that allows embedding."
+    "videoDisclaimer": "Note: Some videos may not be available for embedding. If you see a <strong style='color: red;'>'Video unavailable'</strong> message, please try another video that allows embedding."
   },
   "wordAssociation": {
     "title": "Word Association",
     "description": "Associate words with the chosen music. These words will be used to generate the visualization.",
     "inputPlaceholder": "Type a word",
-    "addButton": "Add"
+    "addButton": "Add",
+    "editButton": "Edit",
+    "saveButton": "Save",
+    "cancelButton": "Cancel"
   },
   "emotionsMap": {
     "title": "Emotions Map",
@@ -227,8 +258,13 @@
     "sampleNumberPlaceholder": "Sample number",
     "dimensionPlaceholder": "Emotional dimension",
     "addButton": "Add",
+    "editButton": "Edit",
+    "saveButton": "Save",
+    "cancelButton": "Cancel",
     "iframeError": "Unable to load the emotions map. Please try opening it in your browser instead.",
-    "openInBrowser": "Open in Browser"
+    "openInBrowser": "Open in Browser",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out"
   },
   "emotionTimeMap": {
     "title": "Emotion Time Map",
@@ -244,7 +280,10 @@
     "minutes": "minutes",
     "alert": "Please ensure the start time is less than the end time and select at least one word.",
     "newSegment": "New segment",
-    "selectedWordsLabel": "Select the words for this new segment"
+    "selectedWordsLabel": "Select the words for this new segment",
+    "editButton": "Edit",
+    "saveButton": "Save",
+    "cancelButton": "Cancel"
   },
   "common": {
     "back": "Back"
@@ -617,7 +656,7 @@
     "resultsAndCriteriaDivider": "After the field test"
   },
   "report": {
-    "title": "User Guide - Thunder",
+    "title": "Thunder's User Guide",
     "musicDecisions": {
       "title": "Music Decisions",
       "selectedMusic": "Selected Music",

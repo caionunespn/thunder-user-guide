@@ -145,8 +145,8 @@ export const theme = {
           dark: '#1B5E20',
         },
         warning: {
-          main: '#F57C00',
-          light: '#FFE0B2',
+          main: '#f5ca00',
+          light: '#FFF3E0',
           dark: '#E65100',
         },
         neutral: {

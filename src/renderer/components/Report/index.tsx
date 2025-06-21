@@ -43,7 +43,6 @@ const MyDocument: React.FC<MyDocumentProps> = ({ data, t }) => {
       {/* Cabeçalho */}
       <Text style={styles.mainTitle}>{t('report.title')}</Text>
 
-      {/* Todas as seções do relatório em cards com espaçamento maior */}
       <View style={styles.sectionGrid}>
         {/* 1. Music Decisions Section */}
         <View style={[styles.card, styles.conceptualizationSectionThunder]}>

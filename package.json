@@ -1,7 +1,7 @@
 {
   "name": "thunder",
   "version": "1.0.0",
-  "description": "User Guide - Thunder, an application to help designers follow the process Thunder",
+  "description": "Thunder's User Guide, an application to help designers follow the process Thunder",
   "homepage": "https://github.com/caionunes3000/thunder",
   "author": {
     "name": "Caio Nunes & Ticianne Darin",
@@ -61,7 +61,7 @@
   },
   "build": {
     "appId": "com.thunder.app",
-    "productName": "User Guide - Thunder",
+    "productName": "Thunder's User Guide",
     "directories": {
       "output": "release",
       "buildResources": "public"

@@ -14,6 +14,7 @@ export const Menu = () => {
   const [isStepsOpen, setIsStepsOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0, width: 0 });
+  const [isScrolled, setIsScrolled] = useState(false);
   const stepsButtonRef = useRef<HTMLButtonElement>(null);
 
   const steps = [
@@ -25,7 +26,7 @@ export const Menu = () => {
     { path: '/prototyping/high', label: t('home.steps.highFidelityPrototype.title') },
     { path: '/evaluation/feedback-session/3', label: t('home.steps.feedbackSession03.title') },
     { path: '/evaluation/laboratory-test', label: t('home.steps.laboratoryTest.title') },
-    { path: null, label: t('home.steps.implementation.title') },
+    { path: '/implementation', label: t('home.steps.implementation.title') },
     { path: '/evaluation/field-test', label: t('home.steps.fieldTest.title') },
   ];
 
@@ -38,6 +39,16 @@ export const Menu = () => {
         width: rect.width,
       });
     }
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsScrolled(scrollTop > 20);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
@@ -54,11 +65,17 @@ export const Menu = () => {
 
   return (
     <nav
-      className="backdrop-blur-lg rounded-2xl p-4 shadow-xl border"
+      className={`sticky top-4 rounded-2xl p-4 shadow-xl border transition-all duration-300 z-50 ${isScrolled ? 'backdrop-blur-xl' : 'backdrop-blur-3xl'
+        }`}
       style={{
-        backgroundColor: colors.background.card,
+        backgroundColor: isScrolled
+          ? `${colors.background.card}CC`
+          : colors.background.card,
         borderColor: colors.border.light,
-        boxShadow: shadows.large
+        boxShadow: isScrolled
+          ? `${shadows.large}, 0 0 20px rgba(0,0,0,0.1)`
+          : shadows.large,
+        transform: isScrolled ? 'scale(0.98)' : 'scale(1)',
       }}
     >
       <div className="flex items-center justify-between">

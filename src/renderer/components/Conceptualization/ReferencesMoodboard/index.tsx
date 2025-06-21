@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useThunder } from '../../../contexts/Thunder';
 import { MdAdd, MdDelete, MdPlayArrow, MdPause, MdImage, MdVideoLibrary, MdMusicNote } from 'react-icons/md';
 import type { ElectronAPI } from '../../../types/electron';
+import { StatusTag } from '../../StatusTag';
 
 interface ReferenceItem {
   id: string;
@@ -237,17 +238,20 @@ const ReferencesMoodboard = () => {
         boxShadow: shadows.large
       }}
     >
-      <h2
-        className="text-left leading-tight mb-6"
-        style={{
-          fontSize: typography.h2.size,
-          fontWeight: typography.h2.weight,
-          lineHeight: typography.h2.lineHeight,
-          color: mode === 'dark' ? modeColors.text.primary : stageColors.text.primary
-        }}
-      >
-        {t('referencesMoodboard.title')}
-      </h2>
+      <div className="flex items-end mb-3">
+        <h2
+          className="text-left leading-tight"
+          style={{
+            fontSize: typography.h2.size,
+            fontWeight: typography.h2.weight,
+            lineHeight: typography.h2.lineHeight,
+            color: mode === 'dark' ? modeColors.text.primary : stageColors.text.primary
+          }}
+        >
+          {t('referencesMoodboard.title')}
+        </h2>
+        <StatusTag status={references.length > 0 ? 'completed' : 'not-started'} />
+      </div>
       <p
         className="text-md text-black leading-relaxed mb-6"
       >

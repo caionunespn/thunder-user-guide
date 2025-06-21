@@ -1,12 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import { ThemeControls } from "../../components/ThemeControls";
 import { useTheme } from "../../contexts/ThemeContext";
-import { STORE_KEYS } from "../../globals/constants";
 import { useTranslation } from "react-i18next";
 import { useThunder } from "../../contexts/Thunder";
-import { ConclusionCriteria, FeedbackSession as IFeedbackSession, FeedbackSessions as IFeedbackSessions } from '../../contexts/Thunder/interfaces';
-import { MdClose } from 'react-icons/md';
+import { ConclusionCriteria } from '../../contexts/Thunder/interfaces';
+import { MdClose, MdEdit, MdCheck, MdCancel } from 'react-icons/md';
+import { IoIosAlert } from "react-icons/io";
+import { StatusTag } from "../../components/StatusTag";
+
+const stepNumber = {
+  "1": "3",
+  "2": "5",
+  "3": "7"
+}
 
 const FeedbackSession = () => {
   const { t } = useTranslation();
@@ -98,6 +105,10 @@ const FeedbackSession = () => {
 
   const [newGoodPoint, setNewGoodPoint] = useState("");
   const [newImprovementPoint, setNewImprovementPoint] = useState("");
+  const [editingGoodPointIndex, setEditingGoodPointIndex] = useState<number | null>(null);
+  const [editingGoodPointValue, setEditingGoodPointValue] = useState("");
+  const [editingImprovementPointIndex, setEditingImprovementPointIndex] = useState<number | null>(null);
+  const [editingImprovementPointValue, setEditingImprovementPointValue] = useState("");
 
   const handleAddGoodPoint = () => {
     if (newGoodPoint.trim()) {
@@ -133,6 +144,60 @@ const FeedbackSession = () => {
     });
   };
 
+  const startEditingGoodPoint = (index: number, value: string) => {
+    setEditingGoodPointIndex(index);
+    setEditingGoodPointValue(value);
+  };
+
+  const saveGoodPointEdit = () => {
+    if (editingGoodPointValue.trim() && editingGoodPointIndex !== null) {
+      const newGoodPoints = [...sessionForm.goodPoints];
+      newGoodPoints[editingGoodPointIndex] = editingGoodPointValue.trim();
+      saveFeedbackSession(sessionNumber, {
+        ...sessionForm,
+        goodPoints: newGoodPoints
+      });
+      setEditingGoodPointIndex(null);
+      setEditingGoodPointValue("");
+    }
+  };
+
+  const cancelGoodPointEdit = () => {
+    setEditingGoodPointIndex(null);
+    setEditingGoodPointValue("");
+  };
+
+  const startEditingImprovementPoint = (index: number, value: string) => {
+    setEditingImprovementPointIndex(index);
+    setEditingImprovementPointValue(value);
+  };
+
+  const saveImprovementPointEdit = () => {
+    if (editingImprovementPointValue.trim() && editingImprovementPointIndex !== null) {
+      const newImprovementPoints = [...sessionForm.improvementPoints];
+      newImprovementPoints[editingImprovementPointIndex] = editingImprovementPointValue.trim();
+      saveFeedbackSession(sessionNumber, {
+        ...sessionForm,
+        improvementPoints: newImprovementPoints
+      });
+      setEditingImprovementPointIndex(null);
+      setEditingImprovementPointValue("");
+    }
+  };
+
+  const cancelImprovementPointEdit = () => {
+    setEditingImprovementPointIndex(null);
+    setEditingImprovementPointValue("");
+  };
+
+  const handleEditEnterKey = (e: React.KeyboardEvent<HTMLInputElement>, saveFunction: () => void, cancelFunction: () => void) => {
+    if (e.key === 'Enter') {
+      saveFunction();
+    } else if (e.key === 'Escape') {
+      cancelFunction();
+    }
+  };
+
   const handleCriteriaToggle = (id: number) => {
     saveFeedbackSession(sessionNumber, {
       ...sessionForm,
@@ -140,6 +205,43 @@ const FeedbackSession = () => {
         criteria.id === id ? { ...criteria, met: !criteria.met } : criteria
       )
     });
+  };
+
+  // Funções para determinar o status de cada campo
+  const getSessionDateStatus = () => {
+    return sessionForm.sessionDate ? 'completed' : 'not-started';
+  };
+
+  const getGoodPointsStatus = () => {
+    if (sessionForm.goodPoints.length > 0) {
+      return 'completed';
+    }
+    return 'not-started';
+  };
+
+  const getImprovementPointsStatus = () => {
+    if (sessionForm.improvementPoints.length > 0) {
+      return 'completed';
+    }
+    return 'not-started';
+  };
+
+  const getCommentsStatus = () => {
+    return sessionForm.comments.trim() ? 'completed' : 'not-started';
+  };
+
+  const getCriteriaStatus = () => {
+    if (sessionForm.criteriaMatch.length === 0) {
+      return 'not-started';
+    }
+    const completedCriteria = sessionForm.criteriaMatch.filter(criteria => criteria.met).length;
+    if (completedCriteria === 0) {
+      return 'not-started';
+    } else if (completedCriteria === sessionForm.criteriaMatch.length) {
+      return 'completed';
+    } else {
+      return 'in-progress';
+    }
   };
 
   return (
@@ -154,7 +256,7 @@ const FeedbackSession = () => {
           }}
         >
           <h1
-            className="text-center leading-tight mb-8"
+            className="text-center leading-tight mb-8 flex flex-col items-center justify-center"
             style={{
               fontSize: typography.h1.size,
               fontWeight: typography.h1.weight,
@@ -162,6 +264,16 @@ const FeedbackSession = () => {
               color: stageColors.text.primary
             }}
           >
+            <span
+              className="flex items-center justify-center rounded-full text-white py-2 px-4 mb-4"
+              style={{
+                fontSize: typography.body.large.size,
+                lineHeight: typography.body.large.lineHeight,
+                backgroundColor: stageColors.text.primary
+              }}
+            >
+              {t('step')} {stepNumber[sessionNumber]}
+            </span>
             {t('feedbackSession.title')}
           </h1>
 
@@ -176,6 +288,41 @@ const FeedbackSession = () => {
           />
         </div>
         <div
+          className="flex items-center justify-center p-4 rounded-lg border-l-4"
+          style={{
+            backgroundColor: modeColors.background.card,
+            borderColor: modeColors.primary.main
+          }}
+        >
+          <div>
+            <h3
+              className="font-semibold mb-1 flex items-center"
+              style={{
+                fontSize: typography.body.large.size,
+                lineHeight: typography.body.large.lineHeight,
+                color: modeColors.primary.dark
+              }}
+            >
+              <IoIosAlert
+                className="w-5 h-5 mr-2 flex-shrink-0"
+                style={{ color: modeColors.primary.dark }}
+              />
+              {t('status.information')}
+            </h3>
+            <p
+              style={{
+                fontSize: typography.body.medium.size,
+                lineHeight: typography.body.medium.lineHeight,
+                color: modeColors.status.neutral.dark,
+                fontStyle: 'italic'
+              }}
+              dangerouslySetInnerHTML={{
+                __html: t('evaluation.didYouKnow1')
+              }}
+            />
+          </div>
+        </div>
+        <div
           className="backdrop-blur-lg rounded-2xl p-8 shadow-xl border"
           style={{
             backgroundColor: stageColors.background.card,
@@ -184,7 +331,7 @@ const FeedbackSession = () => {
           }}
         >
           <h2
-            className="mb-2"
+            className="flex items-end text-left leading-tight mb-2"
             style={{
               fontSize: typography.h2.size,
               fontWeight: typography.h2.weight,
@@ -192,6 +339,7 @@ const FeedbackSession = () => {
             }}
           >
             {t('feedbackSession.sessionDate.title')}
+            <StatusTag status={getSessionDateStatus()} />
           </h2>
           <p
             className="text-md text-black leading-relaxed mb-6"
@@ -223,7 +371,6 @@ const FeedbackSession = () => {
           </div>
         </div>
 
-        {/* Good Points Section */}
         <div
           className="backdrop-blur-lg rounded-2xl p-8 shadow-xl border"
           style={{
@@ -233,7 +380,7 @@ const FeedbackSession = () => {
           }}
         >
           <h2
-            className="mb-2"
+            className="flex items-end text-left leading-tight mb-2"
             style={{
               fontSize: typography.h2.size,
               fontWeight: typography.h2.weight,
@@ -241,6 +388,7 @@ const FeedbackSession = () => {
             }}
           >
             {t('feedbackSession.goodPoints.title')}
+            <StatusTag status={getGoodPointsStatus()} />
           </h2>
           <p
             className="text-md text-black leading-relaxed mb-6"
@@ -300,20 +448,86 @@ const FeedbackSession = () => {
                   color: modeColors.text.black,
                 }}
               >
-                <span style={{ fontSize: typography.body.medium.size, lineHeight: typography.body.medium.lineHeight }}>{point}</span>
-                <button
-                  onClick={() => handleRemoveGoodPoint(index)}
-                  aria-label="Remover ponto"
-                  className="p-1 rounded-full cursor-pointer transition-all duration-300 hover:scale-110 shadow-md"
-                  style={{
-                    backgroundColor: stageColors.background.button.secondary,
-                    color: stageColors.background.button.text,
-                    boxShadow: shadows.medium,
-                    border: 'none'
-                  }}
-                >
-                  <MdClose size={16} />
-                </button>
+                {editingGoodPointIndex === index ? (
+                  <input
+                    type="text"
+                    value={editingGoodPointValue}
+                    onChange={(e) => setEditingGoodPointValue(e.target.value)}
+                    onKeyDown={(e) => handleEditEnterKey(e, saveGoodPointEdit, cancelGoodPointEdit)}
+                    className="flex-1 bg-transparent border-none outline-none"
+                    style={{
+                      color: stageColors.text.primary,
+                      fontSize: typography.body.medium.size,
+                      lineHeight: typography.body.medium.lineHeight
+                    }}
+                    autoFocus
+                  />
+                ) : (
+                  <span style={{
+                    fontSize: typography.body.medium.size,
+                    lineHeight: typography.body.medium.lineHeight
+                  }}>
+                    {point}
+                  </span>
+                )}
+                <div className="flex items-center gap-1">
+                  {editingGoodPointIndex === index ? (
+                    <>
+                      <button
+                        onClick={saveGoodPointEdit}
+                        className="p-1 rounded-full cursor-pointer transition-all duration-300 hover:scale-110"
+                        style={{
+                          backgroundColor: stageColors.background.button.primary,
+                          color: stageColors.background.button.text,
+                          boxShadow: shadows.medium,
+                          border: 'none'
+                        }}
+                      >
+                        <MdCheck size={16} />
+                      </button>
+                      <button
+                        onClick={cancelGoodPointEdit}
+                        className="p-1 rounded-full cursor-pointer transition-all duration-300 hover:scale-110"
+                        style={{
+                          backgroundColor: stageColors.background.button.secondary,
+                          color: stageColors.background.button.text,
+                          boxShadow: shadows.medium,
+                          border: 'none'
+                        }}
+                      >
+                        <MdCancel size={16} />
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <button
+                        onClick={() => startEditingGoodPoint(index, point)}
+                        className="p-1 rounded-full cursor-pointer transition-all duration-300 hover:scale-110"
+                        style={{
+                          backgroundColor: stageColors.background.button.secondary,
+                          color: stageColors.background.button.text,
+                          boxShadow: shadows.medium,
+                          border: 'none'
+                        }}
+                      >
+                        <MdEdit size={16} />
+                      </button>
+                      <button
+                        onClick={() => handleRemoveGoodPoint(index)}
+                        aria-label="Remover ponto"
+                        className="p-1 rounded-full cursor-pointer transition-all duration-300 hover:scale-110 shadow-md"
+                        style={{
+                          backgroundColor: stageColors.background.button.secondary,
+                          color: stageColors.background.button.text,
+                          boxShadow: shadows.medium,
+                          border: 'none'
+                        }}
+                      >
+                        <MdClose size={16} />
+                      </button>
+                    </>
+                  )}
+                </div>
               </li>
             ))}
           </ul>
@@ -327,7 +541,7 @@ const FeedbackSession = () => {
           }}
         >
           <h2
-            className="mb-2"
+            className="flex items-end text-left leading-tight mb-2"
             style={{
               fontSize: typography.h2.size,
               fontWeight: typography.h2.weight,
@@ -335,6 +549,7 @@ const FeedbackSession = () => {
             }}
           >
             {t('feedbackSession.improvementPoints.title')}
+            <StatusTag status={getImprovementPointsStatus()} />
           </h2>
           <p
             className="text-md text-black leading-relaxed mb-6"
@@ -394,20 +609,86 @@ const FeedbackSession = () => {
                   color: modeColors.text.black,
                 }}
               >
-                <span style={{ fontSize: typography.body.medium.size, lineHeight: typography.body.medium.lineHeight }}>{point}</span>
-                <button
-                  onClick={() => handleRemoveImprovementPoint(index)}
-                  aria-label="Remover ponto de melhoria"
-                  className="p-1 rounded-full cursor-pointer transition-all duration-300 hover:scale-110 shadow-md"
-                  style={{
-                    backgroundColor: stageColors.background.button.secondary,
-                    color: stageColors.background.button.text,
-                    boxShadow: shadows.medium,
-                    border: 'none'
-                  }}
-                >
-                  <MdClose size={16} />
-                </button>
+                {editingImprovementPointIndex === index ? (
+                  <input
+                    type="text"
+                    value={editingImprovementPointValue}
+                    onChange={(e) => setEditingImprovementPointValue(e.target.value)}
+                    onKeyDown={(e) => handleEditEnterKey(e, saveImprovementPointEdit, cancelImprovementPointEdit)}
+                    className="flex-1 bg-transparent border-none outline-none"
+                    style={{
+                      color: stageColors.text.primary,
+                      fontSize: typography.body.medium.size,
+                      lineHeight: typography.body.medium.lineHeight
+                    }}
+                    autoFocus
+                  />
+                ) : (
+                  <span style={{
+                    fontSize: typography.body.medium.size,
+                    lineHeight: typography.body.medium.lineHeight
+                  }}>
+                    {point}
+                  </span>
+                )}
+                <div className="flex items-center gap-1">
+                  {editingImprovementPointIndex === index ? (
+                    <>
+                      <button
+                        onClick={saveImprovementPointEdit}
+                        className="p-1 rounded-full cursor-pointer transition-all duration-300 hover:scale-110"
+                        style={{
+                          backgroundColor: stageColors.background.button.primary,
+                          color: stageColors.background.button.text,
+                          boxShadow: shadows.medium,
+                          border: 'none'
+                        }}
+                      >
+                        <MdCheck size={16} />
+                      </button>
+                      <button
+                        onClick={cancelImprovementPointEdit}
+                        className="p-1 rounded-full cursor-pointer transition-all duration-300 hover:scale-110"
+                        style={{
+                          backgroundColor: stageColors.background.button.secondary,
+                          color: stageColors.background.button.text,
+                          boxShadow: shadows.medium,
+                          border: 'none'
+                        }}
+                      >
+                        <MdCancel size={16} />
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <button
+                        onClick={() => startEditingImprovementPoint(index, point)}
+                        className="p-1 rounded-full cursor-pointer transition-all duration-300 hover:scale-110"
+                        style={{
+                          backgroundColor: stageColors.background.button.secondary,
+                          color: stageColors.background.button.text,
+                          boxShadow: shadows.medium,
+                          border: 'none'
+                        }}
+                      >
+                        <MdEdit size={16} />
+                      </button>
+                      <button
+                        onClick={() => handleRemoveImprovementPoint(index)}
+                        aria-label="Remover ponto de melhoria"
+                        className="p-1 rounded-full cursor-pointer transition-all duration-300 hover:scale-110 shadow-md"
+                        style={{
+                          backgroundColor: stageColors.background.button.secondary,
+                          color: stageColors.background.button.text,
+                          boxShadow: shadows.medium,
+                          border: 'none'
+                        }}
+                      >
+                        <MdClose size={16} />
+                      </button>
+                    </>
+                  )}
+                </div>
               </li>
             ))}
           </ul>
@@ -421,7 +702,7 @@ const FeedbackSession = () => {
           }}
         >
           <h2
-            className="mb-2"
+            className="flex items-end text-left leading-tight mb-2"
             style={{
               fontSize: typography.h2.size,
               fontWeight: typography.h2.weight,
@@ -429,6 +710,7 @@ const FeedbackSession = () => {
             }}
           >
             {t('feedbackSession.comments.title')}
+            <StatusTag status={getCommentsStatus()} />
           </h2>
           <p
             className="text-md text-black leading-relaxed mb-6"
@@ -462,7 +744,7 @@ const FeedbackSession = () => {
           }}
         >
           <h2
-            className="mb-2"
+            className="flex items-end text-left leading-tight mb-2"
             style={{
               fontSize: typography.h2.size,
               fontWeight: typography.h2.weight,
@@ -470,6 +752,7 @@ const FeedbackSession = () => {
             }}
           >
             {t('feedbackSession.evaluationCriteria.title')}
+            <StatusTag status={getCriteriaStatus()} />
           </h2>
           <p
             className="text-md text-black leading-relaxed mb-6"

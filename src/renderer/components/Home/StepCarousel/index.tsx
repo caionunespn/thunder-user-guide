@@ -55,6 +55,11 @@ export const StepCarousel = () => {
   const shadows = theme.shadows;
   const [currentSlide, setCurrentSlide] = React.useState(0);
   const [stepStatuses, setStepStatuses] = useState<Record<string, StepStatus>>({});
+  const [openPopoverId, setOpenPopoverId] = useState<string | null>(null);
+
+  const handlePopoverChange = (id: string | null) => {
+    setOpenPopoverId(id);
+  };
 
   useEffect(() => {
     const loadStepStatuses = async () => {
@@ -178,13 +183,13 @@ export const StepCarousel = () => {
 
   const settings: Settings = {
     dots: false,
-    infinite: false,
+    infinite: true,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 2,
     className: "py-4",
-    nextArrow: <CustomArrow direction="right" disabled={currentSlide >= steps.length - 3} />,
-    prevArrow: <CustomArrow direction="left" disabled={currentSlide === 0} />,
+    nextArrow: <CustomArrow direction="right" />,
+    prevArrow: <CustomArrow direction="left" />,
     beforeChange: (_, next) => setCurrentSlide(next),
     responsive: [
       {
@@ -239,6 +244,8 @@ export const StepCarousel = () => {
               {...step}
               stepNumber={index + 1}
               totalSteps={steps.length}
+              openPopoverId={openPopoverId}
+              onPopoverChange={handlePopoverChange}
             />
           </div>
         ))}

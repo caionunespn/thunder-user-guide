@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useTheme } from "../../../contexts/ThemeContext";
-import { MdClose } from 'react-icons/md';
+import { MdClose, MdEdit, MdCheck, MdCancel } from 'react-icons/md';
 import { useThunder } from '../../../contexts/Thunder';
 import { useTranslation } from 'react-i18next';
+import { StatusTag } from '../../StatusTag';
 
 const WordAssociation = ({ fullWidth = false }) => {
   const { t } = useTranslation();
@@ -16,11 +17,15 @@ const WordAssociation = ({ fullWidth = false }) => {
 
   const words = data.conceptualization.musicDecisions.wordAssociation;
   const [inputValue, setInputValue] = useState('');
+  const [editingIndex, setEditingIndex] = useState<number | null>(null);
+  const [editingValue, setEditingValue] = useState('');
 
   const addWord = (word: string) => {
-    const newWords = [...words, word];
-    saveMusicDecisions({ wordAssociation: newWords });
-    setInputValue('');
+    if (word.trim()) {
+      const newWords = [...words, word.trim()];
+      saveMusicDecisions({ wordAssociation: newWords });
+      setInputValue('');
+    }
   };
 
   const handleEnterKey = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -34,6 +39,43 @@ const WordAssociation = ({ fullWidth = false }) => {
     saveMusicDecisions({ wordAssociation: newWords });
   };
 
+  const startEditing = (index: number, word: string) => {
+    setEditingIndex(index);
+    setEditingValue(word);
+  };
+
+  const saveEdit = () => {
+    if (editingValue.trim() && editingIndex !== null) {
+      const newWords = [...words];
+      newWords[editingIndex] = editingValue.trim();
+      saveMusicDecisions({ wordAssociation: newWords });
+      setEditingIndex(null);
+      setEditingValue('');
+    }
+  };
+
+  const cancelEdit = () => {
+    setEditingIndex(null);
+    setEditingValue('');
+  };
+
+  const handleEditEnterKey = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      saveEdit();
+    } else if (e.key === 'Escape') {
+      cancelEdit();
+    }
+  };
+
+  const getStepStatus = () => {
+    if (words.length > 0) {
+      return 'completed';
+    }
+    return 'not-started';
+  };
+
+  const status = getStepStatus();
+
   return (
     <div
       className="backdrop-blur-lg rounded-2xl p-8 shadow-xl border"
@@ -44,7 +86,7 @@ const WordAssociation = ({ fullWidth = false }) => {
       }}
     >
       <h2
-        className="text-left leading-tight mb-6"
+        className="flex items-end text-left leading-tight mb-6"
         style={{
           fontSize: typography.h2.size,
           fontWeight: typography.h2.weight,
@@ -53,6 +95,7 @@ const WordAssociation = ({ fullWidth = false }) => {
         }}
       >
         {t('wordAssociation.title')}
+        <StatusTag status={status} />
       </h2>
       <p
         className="text-md text-black leading-relaxed mb-6">
@@ -103,19 +146,76 @@ const WordAssociation = ({ fullWidth = false }) => {
                 padding: '12px'
               }}
             >
-              <span style={{ color: stageColors.text.primary, fontWeight: 400 }}>{word}</span>
-              <button
-                onClick={() => removeWord(index)}
-                className="p-1 rounded-full cursor-pointer transition-all duration-300 hover:scale-110"
-                style={{
-                  backgroundColor: stageColors.background.button.secondary,
-                  color: stageColors.background.button.text,
-                  boxShadow: shadows.medium,
-                  border: 'none'
-                }}
-              >
-                <MdClose size={16} />
-              </button>
+              {editingIndex === index ? (
+                <input
+                  type="text"
+                  value={editingValue}
+                  onChange={(e) => setEditingValue(e.target.value)}
+                  onKeyDown={handleEditEnterKey}
+                  className="flex-1 bg-transparent border-none outline-none"
+                  style={{ color: stageColors.text.primary }}
+                  autoFocus
+                />
+              ) : (
+                <span style={{ color: stageColors.text.primary, fontWeight: 400 }}>{word}</span>
+              )}
+              <div className="flex items-center gap-1">
+                {editingIndex === index ? (
+                  <>
+                    <button
+                      onClick={saveEdit}
+                      className="p-1 rounded-full cursor-pointer transition-all duration-300 hover:scale-110"
+                      style={{
+                        backgroundColor: stageColors.background.button.primary,
+                        color: stageColors.background.button.text,
+                        boxShadow: shadows.medium,
+                        border: 'none'
+                      }}
+                    >
+                      <MdCheck size={16} />
+                    </button>
+                    <button
+                      onClick={cancelEdit}
+                      className="p-1 rounded-full cursor-pointer transition-all duration-300 hover:scale-110"
+                      style={{
+                        backgroundColor: stageColors.background.button.secondary,
+                        color: stageColors.background.button.text,
+                        boxShadow: shadows.medium,
+                        border: 'none'
+                      }}
+                    >
+                      <MdCancel size={16} />
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button
+                      onClick={() => startEditing(index, word)}
+                      className="p-1 rounded-full cursor-pointer transition-all duration-300 hover:scale-110"
+                      style={{
+                        backgroundColor: stageColors.background.button.secondary,
+                        color: stageColors.background.button.text,
+                        boxShadow: shadows.medium,
+                        border: 'none'
+                      }}
+                    >
+                      <MdEdit size={16} />
+                    </button>
+                    <button
+                      onClick={() => removeWord(index)}
+                      className="p-1 rounded-full cursor-pointer transition-all duration-300 hover:scale-110"
+                      style={{
+                        backgroundColor: stageColors.background.button.secondary,
+                        color: stageColors.background.button.text,
+                        boxShadow: shadows.medium,
+                        border: 'none'
+                      }}
+                    >
+                      <MdClose size={16} />
+                    </button>
+                  </>
+                )}
+              </div>
             </div>
           ))}
         </div>

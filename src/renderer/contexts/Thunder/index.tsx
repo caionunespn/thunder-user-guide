@@ -347,10 +347,10 @@ export const ThunderProvider: React.FC<{ children: React.ReactNode }> = ({ child
   };
 
   const getPrototypeStatus = (prototype: 'medium' | 'high') => {
-    const { video, images } = data.prototyping[prototype];
+    const { finalVideo, video, images } = data.prototyping[prototype];
 
-    const isCompleted = video.id !== '' && images.length > 0;
-    const isInProgress = video.id !== '' || images.length > 0;
+    const isCompleted = (finalVideo?.id || video?.id) && images.length > 0;
+    const isInProgress = (finalVideo?.id || video?.id) || images.length > 0;
 
     return isCompleted ? 'completed' : isInProgress ? 'in-progress' : 'not-started';
   };
@@ -372,17 +372,14 @@ export const ThunderProvider: React.FC<{ children: React.ReactNode }> = ({ child
       || decideData.decide.ethicalConsiderations.length > 0
       || decideData.evaluate.analysisPoints.length > 0;
 
-    // Verifica se todos os critérios foram atendidos
     const allCriteriaMet = Array.isArray(decideData.completionCriteria)
       ? decideData.completionCriteria.every(criterion => criterion.met)
       : false;
 
-    // Verifica se há um resumo dos resultados
     const hasResultsSummary = typeof decideData.resultsSummary === 'string'
       ? decideData.resultsSummary.trim().length > 0
       : false;
 
-    // Considera completo apenas se tiver todo o conteúdo, todos os critérios atendidos e resumo dos resultados
     const isCompleted = hasContent && allCriteriaMet && hasResultsSummary;
 
     return isCompleted ? 'completed' : hasInProgress ? 'in-progress' : 'not-started';

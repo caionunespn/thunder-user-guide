@@ -32,7 +32,7 @@ const StyleDecisions = () => {
           }}
         >
           <h1
-            className="text-center leading-tight mb-8"
+            className="text-center leading-tight mb-8 flex flex-col items-center justify-center"
             style={{
               fontSize: typography.h1.size,
               fontWeight: typography.h1.weight,
@@ -40,6 +40,16 @@ const StyleDecisions = () => {
               color: mode === 'dark' ? modeColors.text.primary : stageColors.text.primary
             }}
           >
+            <span
+              className="flex items-center justify-center rounded-full text-white py-2 px-4 mb-4"
+              style={{
+                fontSize: typography.body.large.size,
+                lineHeight: typography.body.large.lineHeight,
+                backgroundColor: stageColors.text.primary
+              }}
+            >
+              {t('step')} 2
+            </span>
             {t('styleDecisions.title')}
           </h1>
 

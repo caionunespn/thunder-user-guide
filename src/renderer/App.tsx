@@ -21,18 +21,11 @@ import { ThemeControls } from "./components/ThemeControls";
 import { ThunderProvider } from "./contexts/Thunder";
 import { Layout } from "./components/Layout";
 import References from "./pages/References";
-
-const LayoutWrapper = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <Layout>
-      {children}
-    </Layout>
-  );
-};
+import Implementation from "./pages/Implementation";
 
 const AppContent = () => {
   return (
-    <LayoutWrapper>
+    <Layout>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -48,8 +41,9 @@ const AppContent = () => {
           <Route path="field-test" element={<FieldTest />} />
           <Route path="feedback-session/:sessionNumber" element={<FeedbackSession />} />
         </Route>
+        <Route path="/implementation" element={<Implementation />} />
       </Routes>
-    </LayoutWrapper>
+    </Layout>
   );
 };
 

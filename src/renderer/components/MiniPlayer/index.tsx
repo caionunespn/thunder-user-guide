@@ -16,7 +16,6 @@ const getVideoInfo = (url: string): VideoInfo => {
     const urlObj = new URL(url);
     const hostname = urlObj.hostname;
 
-    // YouTube
     if (hostname.includes('youtube.com') || hostname.includes('youtu.be')) {
       let videoId: string | null = null;
       if (hostname.includes('youtube.com')) {
@@ -32,7 +31,6 @@ const getVideoInfo = (url: string): VideoInfo => {
       }
     }
 
-    // Vimeo
     if (hostname.includes('vimeo.com')) {
       const videoId = urlObj.pathname.slice(1);
       if (videoId) {
@@ -43,7 +41,6 @@ const getVideoInfo = (url: string): VideoInfo => {
       }
     }
 
-    // Dailymotion
     if (hostname.includes('dailymotion.com')) {
       const videoId = urlObj.pathname.split('/').pop();
       if (videoId) {
@@ -52,6 +49,25 @@ const getVideoInfo = (url: string): VideoInfo => {
           platform: 'dailymotion'
         };
       }
+    }
+
+    if (hostname.includes('open.spotify.com')) {
+      const pathParts = urlObj.pathname.split('/');
+      const type = pathParts[pathParts.length - 2]; // track, album, playlist
+      const id = pathParts[pathParts.length - 1];
+      if (type && id) {
+        return {
+          embedUrl: `https://open.spotify.com/embed/${type}/${id}`,
+          platform: 'spotify'
+        };
+      }
+    }
+
+    if (hostname.includes('soundcloud.com')) {
+      return {
+        embedUrl: `https://w.soundcloud.com/player/?url=${encodeURIComponent(url)}&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&visual=true`,
+        platform: 'soundcloud'
+      };
     }
 
     return { embedUrl: null, platform: null };

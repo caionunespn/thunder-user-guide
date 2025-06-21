@@ -4,7 +4,6 @@ import App from './App'
 import axe from '@axe-core/react'
 
 if (process.env.NODE_ENV !== 'production') {
-  // Inicializa o Axe Core com um delay maior para garantir que a página esteja completamente carregada
   axe(React, ReactDOM, 2000)
 }
 

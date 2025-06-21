@@ -14,6 +14,7 @@ export const Footer = () => {
       style={{
         fontSize: typography.body.medium.size,
         lineHeight: typography.body.medium.lineHeight,
+        color: colors.text.primary
       }}
     >
       {t('home.footer')}

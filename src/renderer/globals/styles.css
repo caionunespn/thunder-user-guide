@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 :root {
-  /* Light theme variables */
   --background-color: #FFFFFF;
   --text-color: #8A1A5C;
   --primary-color: #FF80C2;
@@ -25,13 +24,11 @@
   --button-text-color: #FFFFFF;
 }
 
-/* Focus styles */
 :focus-visible {
   outline: 2px solid var(--primary-color);
   outline-offset: 2px;
 }
 
-/* High contrast mode support */
 @media (forced-colors: active) {
   :focus-visible {
     outline: 2px solid CanvasText;
@@ -43,7 +40,6 @@
   }
 }
 
-/* Stage-specific variables */
 [data-stage="conceptualization"] {
   --background-color: #F0F7FF;
   --text-color: #002B4D;
@@ -89,7 +85,6 @@
   --button-text-color: #FFFFFF;
 }
 
-/* Ensure text is visible in high contrast mode */
 @media (forced-colors: active) {
   * {
     forced-color-adjust: none;
@@ -184,7 +179,6 @@
     font-family: 'Poppins', sans-serif;
   }
 
-  /* Utility classes for theme transitions */
   .theme-transition {
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
   }

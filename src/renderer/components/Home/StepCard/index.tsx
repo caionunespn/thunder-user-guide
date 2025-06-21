@@ -21,6 +21,8 @@ export interface Step {
 interface StepCardProps extends Step {
   stepNumber: number;
   totalSteps: number;
+  openPopoverId: string | null;
+  onPopoverChange: (id: string | null) => void;
 }
 
 interface StatusBadgeProps {
@@ -33,9 +35,10 @@ interface StatusBadgeProps {
     dark: string;
     background: string;
   };
+  openPopoverId?: string | null;
+  onPopoverChange?: (id: string | null) => void;
 }
 
-// Estado global para controlar qual badge está expandido
 let expandedBadgeId: string | null = null;
 const badgeListeners: ((id: string | null) => void)[] = [];
 
@@ -49,12 +52,7 @@ const subscribeToBadgeExpansion = (listener: (id: string | null) => void) => {
   };
 };
 
-const setExpandedBadge = (id: string | null) => {
-  expandedBadgeId = id;
-  badgeListeners.forEach(listener => listener(id));
-};
-
-const StatusBadge = ({ status, shadows, stepId, stageColors }: StatusBadgeProps) => {
+const StatusBadge = ({ status, shadows, stepId, stageColors, openPopoverId, onPopoverChange }: StatusBadgeProps) => {
   const { t } = useTranslation();
   const { mode, theme } = useTheme();
   const { data } = useThunder();
@@ -122,8 +120,9 @@ const StatusBadge = ({ status, shadows, stepId, stageColors }: StatusBadgeProps)
       case 'highFidelityPrototype':
         const prototypeType = stepId.includes('medium') ? 'medium' : 'high';
         const prototype = data.prototyping[prototypeType];
+
         return [
-          { text: t('home.requirements.prototype.video'), met: !!prototype.video.id },
+          { text: t('home.requirements.prototype.video'), met: !!prototype?.finalVideo?.id },
           { text: t('home.requirements.prototype.images'), met: prototype.images.length > 0 }
         ];
 
@@ -163,10 +162,12 @@ const StatusBadge = ({ status, shadows, stepId, stageColors }: StatusBadgeProps)
   const statusStyles = getStatusStyles();
   const requirements = getRequirements();
 
+  const handleOpenChange = (open: boolean) => {
+    onPopoverChange?.(open ? stepId : null);
+  };
+
   return (
-    <Popover.Root aria-controls={undefined} onOpenChange={(open) => {
-      setExpandedBadge(open ? stepId : null);
-    }}>
+    <Popover.Root aria-controls={undefined} open={openPopoverId === stepId} onOpenChange={handleOpenChange}>
       <Popover.Trigger aria-controls={undefined} asChild>
         <button
           className="flex items-center justify-between gap-3 px-4 py-3 rounded-lg transition-all duration-300 w-full text-left"
@@ -262,7 +263,7 @@ const StatusBadge = ({ status, shadows, stepId, stageColors }: StatusBadgeProps)
   );
 };
 
-export const StepCard = ({ id, title, description, status, icon, category, isExternal, page, stepNumber, totalSteps }: StepCardProps) => {
+export const StepCard = ({ id, title, description, status, icon, category, isExternal, page, stepNumber, openPopoverId, onPopoverChange }: StepCardProps) => {
   const { t } = useTranslation();
   const { mode, theme, fontSize } = useTheme();
   const colors = theme.colors[mode];
@@ -418,7 +419,7 @@ export const StepCard = ({ id, title, description, status, icon, category, isExt
         >
           <CardContent />
         </Link>
-        {category !== 'implementation' && <StatusBadge status={status} shadows={shadows} stepId={id} stageColors={stageColors} />}
+        {category !== 'implementation' && <StatusBadge status={status} shadows={shadows} stepId={id} stageColors={stageColors} openPopoverId={openPopoverId} onPopoverChange={onPopoverChange} />}
       </CardWrapper>
     </div>
   );

@@ -2,6 +2,7 @@ import React from "react";
 import { useTheme } from "../../../contexts/ThemeContext";
 import { useTranslation } from "react-i18next";
 import { useThunder } from "../../../contexts/Thunder";
+import { StatusTag } from "../../StatusTag";
 
 export const StyleChoice = () => {
   const { t } = useTranslation();
@@ -27,17 +28,20 @@ export const StyleChoice = () => {
         boxShadow: shadows.large
       }}
     >
-      <h2
-        className="text-left leading-tight mb-6"
-        style={{
-          fontSize: typography.h2.size,
-          fontWeight: typography.h2.weight,
-          lineHeight: typography.h2.lineHeight,
-          color: mode === 'dark' ? modeColors.text.primary : stageColors.text.primary
-        }}
-      >
-        {t('styleChoice.title')}
-      </h2>
+      <div className="flex items-end mb-3">
+        <h2
+          className="text-left leading-tight"
+          style={{
+            fontSize: typography.h2.size,
+            fontWeight: typography.h2.weight,
+            lineHeight: typography.h2.lineHeight,
+            color: mode === 'dark' ? modeColors.text.primary : stageColors.text.primary
+          }}
+        >
+          {t('styleChoice.title')}
+        </h2>
+        <StatusTag status={data.conceptualization.styleDecisions.styleChoice ? 'completed' : 'not-started'} />
+      </div>
       <p
         className="text-md text-black leading-relaxed mb-6"
       >

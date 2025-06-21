@@ -54,7 +54,7 @@ export const FAQ = () => {
               onClick={() => toggleFaq(index)}
               style={{
                 backgroundColor: colors.background.card,
-                color: colors.text.primary
+                color: colors.primary.dark
               }}
               aria-expanded={openFaqIndex === index}
               aria-controls={`faq-answer-${index}`}
@@ -64,7 +64,8 @@ export const FAQ = () => {
                 className="font-semibold"
                 style={{
                   fontSize: typography.body.large.size,
-                  lineHeight: typography.body.large.lineHeight
+                  lineHeight: typography.body.large.lineHeight,
+                  color: colors.primary.dark
                 }}
               >
                 {item.question}

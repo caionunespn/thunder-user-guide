@@ -7,8 +7,8 @@ export default {
     extend: {
       colors: {
         evaluation: {
-          500: '#3B82F6', // Azul
-          600: '#2563EB', // Azul mais escuro
+          500: '#3B82F6',
+          600: '#2563EB',
         }
       }
     },

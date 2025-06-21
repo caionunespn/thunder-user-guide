@@ -5,7 +5,6 @@ const fs = require('fs/promises');
 let mainWindow = null;
 let store = null;
 
-// Get the absolute path to the project root
 const projectRoot = path.join(__dirname, '../../');
 
 async function initializeStoreAndStart() {
@@ -141,19 +140,16 @@ function createWindow() {
     }
   });
 
-  // Set referrer policy for web content
   mainWindow.webContents.session.webRequest.onBeforeSendHeaders((details, callback) => {
     details.requestHeaders['Referrer-Policy'] = 'no-referrer-when-downgrade';
     callback({ requestHeaders: details.requestHeaders });
   });
 
-  // Handle navigation to external URLs
   mainWindow.webContents.setWindowOpenHandler(({ url }) => {
     shell.openExternal(url);
     return { action: 'deny' };
   });
 
-  // Handle navigation within the app
   mainWindow.webContents.on('will-navigate', (event, url) => {
     if (!url.startsWith('http://localhost:5173') && !url.startsWith('file://')) {
       event.preventDefault();
@@ -161,7 +157,6 @@ function createWindow() {
     }
   });
 
-  // Load the app
   if (isDev) {
     const devServerUrl = process.env.VITE_DEV_SERVER_URL || 'http://localhost:5173';
     mainWindow.loadURL(devServerUrl);

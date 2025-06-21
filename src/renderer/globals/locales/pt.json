@@ -1,14 +1,42 @@
 {
+  "step": "Passo",
+  "stepSkip": {
+    "next": "Próximo",
+    "previous": "Anterior",
+    "/conceptualization/musical-and-emotional-decisions": "Passo 1 - Decisões Musicais e Emocionais",
+    "/conceptualization/style-decisions": "Passo 2 - Decisões de Estilo",
+    "/evaluation/feedback-session/1": "Passo 3 - Sessão de Feedback 01",
+    "/prototyping/medium": "Passo 4 - Protótipo de Média Fidelidade",
+    "/evaluation/feedback-session/2": "Passo 5 - Sessão de Feedback 02",
+    "/prototyping/high": "Passo 6 - Protótipo de Alta Fidelidade",
+    "/evaluation/feedback-session/3": "Passo 7 - Sessão de Feedback 03",
+    "/evaluation/laboratory-test": "Passo 8 - Teste de Laboratório",
+    "/implementation": "Passo 9 - Implementação",
+    "/evaluation/field-test": "Passo 10 - Teste de Campo"
+  },
+  "evaluation": {
+    "didYouKnow1": "A avaliação no Thunder foi desenvolvida para apoiá-lo a alcançar os objetivos emocionais propostos para a visualização. Use essas etapas para validar suas decisões, fornecer clareza e garantir que cada passo esteja realmente cumprindo o propósito desejado."
+  },
+  "status": {
+    "attention": "Atenção",
+    "information": "Você sabia?"
+  },
+  "implementation": {
+    "title": "Implementação",
+    "description": "A implementação é um passo externo ao Thunder, onde você pode desenvolver sua visualização musical final seguindo as diretrizes e aprendizados obtidos durante o processo. Este passo deve ser adaptado conforme as necessidades específicas do seu projeto."
+  },
   "carousel": {
     "previous": "Anterior",
     "next": "Próximo"
   },
   "home": {
-    "title": "Guia de Uso - Thunder",
+    "title": "Guia de Uso do Thunder",
     "menu": {
       "steps": "Passos"
     },
-    "description": "Este aplicativo é um guia didático e interativo para te ajudar a seguir corretamente o processo Thunder na criação de visualizações musicais emocionalmente envolventes. Nesta ferramenta você registrará, organizará e compilará suas decisões e aprendizados enquanto vai seguindo o processo. Ao final, você poderá exportar um relatório completo com tudo o que foi construído.",
+    "description1": "Este aplicativo é um <strong>guia didático e interativo</strong> para te ajudar a seguir corretamente o <strong>processo Thunder</strong> na criação de <strong>visualizações musicais emocionalmente envolventes</strong>.",
+    "description2": "Nesta ferramenta você <strong>registrará, organizará e compilará</strong> suas <strong>decisões e aprendizados</strong> enquanto vai seguindo o processo. Ao final, você poderá exportar um <strong>relatório completo</strong> com tudo o que foi construído.",
+    "description3": "O Guia de Uso do Thunder <strong>não é o processo Thunder em si</strong>, mas uma <strong>ferramenta de suporte</strong> para te ajudar a seguir o processo.",
     "conceptualizationButton": "Conceituação: Siga o Passo a Passo",
     "prototypingButton": "Prototipação: Documente Suas Ideias",
     "evaluationButton": "Avaliação: Registre e Reflita",
@@ -79,22 +107,22 @@
     "faq": [
       {
         "question": "O que é o Thunder?",
-        "answer": "Thunder é um processo de design estruturado para criar visualizações musicais emocionalmente engajantes. O Guia de Uso - Thunder é um aplicativo que serve apenas como apoio didático para te ajudar a seguir cada etapa do processo, registrando decisões e organizando informações. O app não é o processo Thunder em si, mas sim uma ferramenta de suporte."
+        "answer": "Thunder é um processo de design estruturado para criar visualizações musicais emocionalmente engajantes. O Guia de Uso do Thunder é um aplicativo que serve apenas como apoio didático para te ajudar a seguir cada etapa do processo, registrando decisões e organizando informações. O app não é o processo Thunder em si, mas sim uma ferramenta de suporte."
       },
       {
         "question": "Como funciona o aplicativo?",
-        "answer": "O Guia de Uso - Thunder te orienta por todas as fases do processo Thunder: Conceitualização, Prototipação e Avaliação. Em cada etapa, você será guiado a refletir, registrar e organizar suas decisões, referências e aprendizados. Ao final, você pode exportar um relatório completo com tudo o que foi documentado."
+        "answer": "O Guia de Uso do Thunder te orienta por todas as fases do processo Thunder: Conceitualização, Prototipação e Avaliação. Em cada etapa, você será guiado a refletir, registrar e organizar suas decisões, referências e aprendizados. Ao final, você pode exportar um relatório completo com tudo o que foi documentado."
       },
       {
         "question": "O aplicativo cria visualizações musicais?",
-        "answer": "Não. O Guia de Uso - Thunder é apenas um guia para apoiar o uso do processo Thunder. Ele não gera visualizações automaticamente, mas te ajuda a estruturar, registrar e compilar todas as informações do seu projeto, facilitando a criação da sua visualização musical fora do app."
+        "answer": "Não. O Guia de Uso do Thunder é apenas um guia para apoiar o uso do processo Thunder. Ele não gera visualizações automaticamente, mas te ajuda a estruturar, registrar e compilar todas as informações do seu projeto, facilitando a criação da sua visualização musical fora do app."
       },
       {
         "question": "O que eu recebo ao final do processo?",
         "answer": "Ao final, você pode exportar um relatório detalhado com todas as decisões, registros, referências e aprendizados do seu projeto, servindo como documentação completa do uso do processo Thunder."
       },
       {
-        "question": "Preciso saber programar para usar o Guia de Uso - Thunder?",
+        "question": "Preciso saber programar para usar o Guia de Uso do Thunder?",
         "answer": "Não! O aplicativo foi pensado para ser acessível a todos que desejam seguir o processo Thunder, independentemente de conhecimento técnico. O foco é te orientar e organizar suas ideias e decisões."
       }
     ],
@@ -213,13 +241,16 @@
     "videoLink": "Link do Vídeo (Youtube, Vimeo ou Dailymotion)",
     "albumCover": "Capa do Álbum",
     "invalidYoutubeUrl": "Por favor, insira uma URL válida do YouTube (ex: https://www.youtube.com/watch?v=VIDEO_ID)",
-    "videoDisclaimer": "Nota: Alguns vídeos podem não estar disponíveis para incorporação. Se você vir a mensagem 'Vídeo indisponível', por favor, tente outro vídeo que permita incorporação."
+    "videoDisclaimer": "Nota: Alguns vídeos podem não estar disponíveis para incorporação. Se você vir a mensagem <strong style='color: red;'>'Vídeo indisponível'</strong>, por favor, tente outro vídeo que permita incorporação."
   },
   "wordAssociation": {
     "title": "Associação de Palavras",
     "description": "Agora, ouvindo a música escolhida, registre palavras que surgirem na sua mente. Elas vão ajudar a guiar as próximas etapas.",
     "inputPlaceholder": "Digite uma palavra",
-    "addButton": "Adicionar"
+    "addButton": "Adicionar",
+    "editButton": "Editar",
+    "saveButton": "Salvar",
+    "cancelButton": "Cancelar"
   },
   "emotionsMap": {
     "title": "Mapa de Emoções",
@@ -230,7 +261,12 @@
     "noSamples": "Nenhuma amostra adicionada",
     "sampleNumberPlaceholder": "Número da amostra",
     "dimensionPlaceholder": "Dimensão emocional",
-    "addButton": "Adicionar"
+    "addButton": "Adicionar",
+    "editButton": "Editar",
+    "saveButton": "Salvar",
+    "cancelButton": "Cancelar",
+    "zoomIn": "Aumentar zoom",
+    "zoomOut": "Diminuir zoom"
   },
   "emotionTimeMap": {
     "title": "Mapa Temporal de Emoções",
@@ -246,7 +282,10 @@
     "minutes": "minutos",
     "alert": "Por favor, assegure-se de que a duração de início é menor que a duração de término e selecione pelo menos uma palavra.",
     "newSegment": "Novo segmento",
-    "selectedWordsLabel": "Selecione as palavras para este novo segmento"
+    "selectedWordsLabel": "Selecione as palavras para este novo segmento",
+    "editButton": "Editar",
+    "saveButton": "Salvar",
+    "cancelButton": "Cancelar"
   },
   "common": {
     "back": "Voltar"
@@ -614,7 +653,7 @@
     "resultsAndCriteriaDivider": "Após o teste de campo"
   },
   "report": {
-    "title": "Guia de Uso - Thunder",
+    "title": "Guia de Uso do Thunder",
     "musicDecisions": {
       "title": "Decisões Musicais",
       "selectedMusic": "Música Selecionada",

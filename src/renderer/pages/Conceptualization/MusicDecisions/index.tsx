@@ -26,20 +26,30 @@ const MusicDecisions = () => {
         <div
           className="backdrop-blur-lg rounded-2xl p-8 shadow-xl border"
           style={{
-            backgroundColor: mode === 'dark' ? modeColors.background.card : stageColors.background.card,
-            borderColor: mode === 'dark' ? modeColors.border.light : stageColors.border.light,
+            backgroundColor: stageColors.background.card,
+            borderColor: stageColors.border.light,
             boxShadow: shadows.large
           }}
         >
           <h1
-            className="text-center leading-tight mb-8"
+            className="text-center leading-tight mb-8 flex flex-col items-center justify-center"
             style={{
               fontSize: typography.h1.size,
               fontWeight: typography.h1.weight,
               lineHeight: typography.h1.lineHeight,
-              color: mode === 'dark' ? modeColors.text.primary : stageColors.text.primary
+              color: stageColors.text.primary
             }}
           >
+            <span
+              className="flex items-center justify-center rounded-full text-white py-2 px-4 mb-4"
+              style={{
+                fontSize: typography.body.large.size,
+                lineHeight: typography.body.large.lineHeight,
+                backgroundColor: stageColors.text.primary
+              }}
+            >
+              {t('step')} 1
+            </span>
             {t('musicDecisions.title')}
           </h1>
 

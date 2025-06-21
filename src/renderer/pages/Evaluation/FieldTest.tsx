@@ -1,12 +1,13 @@
-import React, { useState, useEffect, useRef } from "react";
 import { ThemeControls } from "../../components/ThemeControls";
 import { useTheme } from "../../contexts/ThemeContext";
 import { useTranslation } from "react-i18next";
 import { useThunder } from "../../contexts/Thunder";
 import { DECIDE } from "../../contexts/Thunder/interfaces";
 import { MdAdd, MdClose, MdHelpOutline } from "react-icons/md";
+import { IoIosAlert } from "react-icons/io";
+import { StatusTag } from "../../components/StatusTag";
+import { useState } from "react";
 
-// Modal component for showing examples
 const Modal = ({ open, onClose, children }: { open: boolean; onClose: () => void; children: React.ReactNode }) => {
   const { mode, theme } = useTheme();
   const stageColors = theme.colors[mode].stages.evaluation;
@@ -18,8 +19,8 @@ const Modal = ({ open, onClose, children }: { open: boolean; onClose: () => void
       <div
         className="rounded-2xl shadow-2xl p-8 max-w-lg w-full relative border"
         style={{
-          backgroundColor: mode === 'dark' ? modeColors.background.card : stageColors.background.card,
-          borderColor: mode === 'dark' ? modeColors.border.light : stageColors.border.light,
+          backgroundColor: stageColors.background.card,
+          borderColor: stageColors.border.light,
           boxShadow: '0 2px 16px 0 rgba(0,0,0,0.10)'
         }}
       >
@@ -38,22 +39,18 @@ const Modal = ({ open, onClose, children }: { open: boolean; onClose: () => void
 
 const criteriaDefault = [
   {
-    id: 1,
     criteria: 'fieldTest.completionCriteria.criterion1',
     met: false
   },
   {
-    id: 2,
     criteria: 'fieldTest.completionCriteria.criterion2',
     met: false
   },
   {
-    id: 3,
     criteria: 'fieldTest.completionCriteria.criterion3',
     met: false
   },
   {
-    id: 4,
     criteria: 'fieldTest.completionCriteria.criterion4',
     met: false
   }
@@ -172,12 +169,12 @@ const FieldTest = () => {
     };
     if (section === 'determine') {
       const objectives = [...newData.determine.objectives];
-      const subitems = [...objectives[index].subitems, t('fieldTest.sections.determine.newSubitem')];
+      const subitems = [...(objectives[index].subitems || []), t('fieldTest.sections.determine.newSubitem')];
       objectives[index] = { ...objectives[index], subitems };
       newData.determine.objectives = objectives;
     } else {
       const questions = [...newData.explore.questions];
-      const subitems = [...questions[index].subitems, t('fieldTest.sections.explore.newSubitem')];
+      const subitems = [...(questions[index].subitems || []), t('fieldTest.sections.explore.newSubitem')];
       questions[index] = { ...questions[index], subitems };
       newData.explore.questions = questions;
     }
@@ -197,9 +194,15 @@ const FieldTest = () => {
       completionCriteria: testData.completionCriteria || criteriaDefault
     };
     if (section === 'determine') {
-      newData.determine.objectives[itemIndex].subitems[subitemIndex] = value;
+      const objectives = newData.determine.objectives[itemIndex];
+      if (objectives?.subitems) {
+        objectives.subitems[subitemIndex] = value;
+      }
     } else {
-      newData.explore.questions[itemIndex].subitems[subitemIndex] = value;
+      const questions = newData.explore.questions[itemIndex];
+      if (questions?.subitems) {
+        questions.subitems[subitemIndex] = value;
+      }
     }
     saveFieldTest(newData);
   };
@@ -237,11 +240,15 @@ const FieldTest = () => {
       completionCriteria: testData.completionCriteria || criteriaDefault
     };
     if (section === 'determine') {
-      newData.determine.objectives[itemIndex].subitems =
-        newData.determine.objectives[itemIndex].subitems.filter((_, i) => i !== subitemIndex);
+      const objectives = newData.determine.objectives[itemIndex];
+      if (objectives?.subitems) {
+        objectives.subitems = objectives.subitems.filter((_, i) => i !== subitemIndex);
+      }
     } else {
-      newData.explore.questions[itemIndex].subitems =
-        newData.explore.questions[itemIndex].subitems.filter((_, i) => i !== subitemIndex);
+      const questions = newData.explore.questions[itemIndex];
+      if (questions?.subitems) {
+        questions.subitems = questions.subitems.filter((_, i) => i !== subitemIndex);
+      }
     }
     saveFieldTest(newData);
   };
@@ -258,7 +265,7 @@ const FieldTest = () => {
         <div key={idx} className="space-y-2">
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-2 w-full">
-              <span className="text-sm font-medium" style={{ color: mode === 'dark' ? modeColors.text.primary : stageColors.text.primary }}>
+              <span className="text-sm font-medium" style={{ color: stageColors.text.primary }}>
                 {idx + 1}.
               </span>
               <textarea
@@ -266,9 +273,9 @@ const FieldTest = () => {
                 onChange={(e) => handleUpdateItem(section, getItemType(section), idx, isComplexItem ? { ...item, title: e.target.value } : e.target.value)}
                 className="flex-1 px-3 py-1.5 rounded-lg border resize-y h-[48px] overflow-hidden"
                 style={{
-                  backgroundColor: mode === 'dark' ? modeColors.background.input : stageColors.background.input,
-                  borderColor: mode === 'dark' ? modeColors.border.light : stageColors.border.light,
-                  color: mode === 'dark' ? modeColors.text.primary : stageColors.text.primary,
+                  backgroundColor: stageColors.background.input,
+                  borderColor: stageColors.border.light,
+                  color: stageColors.text.primary,
                   fontSize: typography.body.medium.size,
                   lineHeight: typography.body.medium.lineHeight
                 }}
@@ -281,9 +288,9 @@ const FieldTest = () => {
                   onClick={() => handleAddSubitem(section as 'determine' | 'explore', idx)}
                   className="p-2 rounded-full border transition-all duration-300 flex items-center justify-center hover:scale-105 hover:bg-opacity-80"
                   style={{
-                    backgroundColor: mode === 'dark' ? modeColors.background.button.primary : stageColors.background.button.primary,
-                    borderColor: mode === 'dark' ? modeColors.border.button.primary : stageColors.border.button,
-                    color: mode === 'dark' ? modeColors.background.button.text : stageColors.background.button.text,
+                    backgroundColor: stageColors.background.button.primary,
+                    borderColor: stageColors.border.button,
+                    color: stageColors.background.button.text,
                     width: 40, height: 40, minWidth: 40, minHeight: 40, maxWidth: 40, maxHeight: 40
                   }}
                   aria-label={t(`fieldTest.sections.${section}.addSubitem`)}
@@ -296,9 +303,9 @@ const FieldTest = () => {
                 onClick={() => handleDeleteItem(section, getItemType(section), idx)}
                 className="p-2 rounded-full border transition-all duration-300 flex items-center justify-center hover:bg-red-500 hover:text-white hover:scale-105"
                 style={{
-                  backgroundColor: mode === 'dark' ? modeColors.background.button.secondary : stageColors.background.button.secondary,
-                  borderColor: mode === 'dark' ? modeColors.border.button.secondary : stageColors.border.button,
-                  color: mode === 'dark' ? modeColors.background.button.text : stageColors.background.button.text,
+                  backgroundColor: stageColors.background.button.secondary,
+                  borderColor: stageColors.border.button,
+                  color: stageColors.background.button.text,
                   width: 40, height: 40, minWidth: 40, minHeight: 40, maxWidth: 40, maxHeight: 40
                 }}
                 aria-label={t('common.remove')}
@@ -312,7 +319,7 @@ const FieldTest = () => {
             <div className="ml-6 space-y-2">
               {item.subitems.map((subitem: string, subIdx: number) => (
                 <div key={subIdx} className="flex items-center gap-2">
-                  <span className="text-sm font-medium" style={{ color: mode === 'dark' ? modeColors.text.primary : stageColors.text.primary }}>
+                  <span className="text-sm font-medium" style={{ color: stageColors.text.primary }}>
                     {idx + 1}.{subIdx + 1}.
                   </span>
                   <textarea
@@ -320,9 +327,9 @@ const FieldTest = () => {
                     onChange={(e) => handleUpdateSubitem(section as 'determine' | 'explore', idx, subIdx, e.target.value)}
                     className="flex-1 px-3 py-1.5 rounded-lg border resize-y h-[38px] overflow-hidden"
                     style={{
-                      backgroundColor: mode === 'dark' ? modeColors.background.input : stageColors.background.input,
-                      borderColor: mode === 'dark' ? modeColors.border.light : stageColors.border.light,
-                      color: mode === 'dark' ? modeColors.text.primary : stageColors.text.primary,
+                      backgroundColor: stageColors.background.input,
+                      borderColor: stageColors.border.light,
+                      color: stageColors.text.primary,
                       fontSize: typography.body.medium.size,
                       lineHeight: typography.body.medium.lineHeight
                     }}
@@ -332,9 +339,9 @@ const FieldTest = () => {
                     onClick={() => handleDeleteSubitem(section as 'determine' | 'explore', idx, subIdx)}
                     className="p-2 rounded-full border transition-all duration-300 hover:bg-red-500 hover:text-white hover:scale-105"
                     style={{
-                      backgroundColor: mode === 'dark' ? modeColors.background.button.secondary : stageColors.background.button.secondary,
-                      borderColor: mode === 'dark' ? modeColors.border.button.secondary : stageColors.border.button,
-                      color: mode === 'dark' ? modeColors.background.button.text : stageColors.background.button.text
+                      backgroundColor: stageColors.background.button.secondary,
+                      borderColor: stageColors.border.button,
+                      color: stageColors.background.button.text
                     }}
                   >
                     <MdClose size={18} />
@@ -354,34 +361,83 @@ const FieldTest = () => {
     saveFieldTest(newData);
   };
 
-  const handleCriteriaToggle = (id: number) => {
+  const handleCriteriaToggle = (criteriaKey: string) => {
     const criteria = (testData.completionCriteria && testData.completionCriteria.length > 0 ? testData.completionCriteria : criteriaDefault).map(c =>
-      c.id === id ? { ...c, met: !c.met } : c
+      c.criteria === criteriaKey ? { ...c, met: !c.met } : c
     );
     const newData = { ...testData, completionCriteria: criteria };
     saveFieldTest(newData);
   };
 
+  // Funções para determinar o status de cada seção
+  const getSectionStatus = (section: keyof DECIDE) => {
+    const sectionData = testData[section];
+    if (!sectionData || typeof sectionData !== 'object') {
+      return 'not-started';
+    }
+
+    const itemsKey = getSectionItemsKey(section);
+    const items = sectionData[itemsKey];
+
+    if (!items || items.length === 0) {
+      return 'not-started';
+    }
+
+    return items.length > 0 ? 'completed' : 'not-started';
+  };
+
+  const getResultsSummaryStatus = () => {
+    return testData.resultsSummary && testData.resultsSummary.trim() ? 'completed' : 'not-started';
+  };
+
+  const getCompletionCriteriaStatus = () => {
+    const criteria = testData.completionCriteria && testData.completionCriteria.length > 0
+      ? testData.completionCriteria
+      : criteriaDefault;
+
+    if (criteria.length === 0) {
+      return 'not-started';
+    }
+
+    const completedCriteria = criteria.filter(c => c.met).length;
+    if (completedCriteria === 0) {
+      return 'not-started';
+    } else if (completedCriteria === criteria.length) {
+      return 'completed';
+    } else {
+      return 'in-progress';
+    }
+  };
+
   return (
     <div className="space-y-8">
-      {/* Header Section */}
       <div
         className="backdrop-blur-lg rounded-2xl p-8 shadow-xl border"
         style={{
-          backgroundColor: mode === 'dark' ? modeColors.background.card : stageColors.background.card,
-          borderColor: mode === 'dark' ? modeColors.border.light : stageColors.border.light,
+          backgroundColor: stageColors.background.card,
+          borderColor: stageColors.border.light,
           boxShadow: shadows.large
         }}
       >
         <h1
-          className="text-center leading-tight mb-8"
+          className="text-center leading-tight mb-8 flex flex-col items-center justify-center"
           style={{
             fontSize: typography.h1.size,
             fontWeight: typography.h1.weight,
             lineHeight: typography.h1.lineHeight,
-            color: mode === 'dark' ? modeColors.text.primary : stageColors.text.primary
+            color: stageColors.text.primary
           }}
         >
+          <span
+            className="flex items-center justify-center rounded-full text-white py-2 px-4 mb-4"
+            style={{
+              fontSize: typography.body.large.size,
+              lineHeight: typography.body.large.lineHeight,
+              backgroundColor: stageColors.text.primary
+            }}
+          >
+            {t('step')} 10
+          </span>
           {t('fieldTest.title')}
         </h1>
         <p
@@ -396,7 +452,42 @@ const FieldTest = () => {
         </p>
       </div>
 
-      {/* Main Content Sections */}
+      <div
+        className="flex items-center justify-center p-4 rounded-lg border-l-4"
+        style={{
+          backgroundColor: modeColors.background.card,
+          borderColor: modeColors.primary.main
+        }}
+      >
+        <div>
+          <h3
+            className="font-semibold mb-1 flex items-center"
+            style={{
+              fontSize: typography.body.large.size,
+              lineHeight: typography.body.large.lineHeight,
+              color: modeColors.primary.dark
+            }}
+          >
+            <IoIosAlert
+              className="w-5 h-5 mr-2 flex-shrink-0"
+              style={{ color: modeColors.primary.dark }}
+            />
+            {t('status.information')}
+          </h3>
+          <p
+            style={{
+              fontSize: typography.body.medium.size,
+              lineHeight: typography.body.medium.lineHeight,
+              color: modeColors.status.neutral.dark,
+              fontStyle: 'italic'
+            }}
+            dangerouslySetInnerHTML={{
+              __html: t('evaluation.didYouKnow1')
+            }}
+          />
+        </div>
+      </div>
+
       {Object.entries(testData).map(([key, value], idx) => {
         const section = key as keyof DECIDE;
         const typedValue = value as DECIDE[keyof DECIDE];
@@ -419,7 +510,6 @@ const FieldTest = () => {
           evaluate: t('fieldTest.sections.evaluate.examples', { returnObjects: true }) as string[]
         };
 
-        // Descrições curtas para cada seção
         const sectionShortDescriptions: Record<string, string> = {
           determine: t('fieldTest.sections.determine.description'),
           explore: t('fieldTest.sections.explore.description'),
@@ -432,7 +522,7 @@ const FieldTest = () => {
         return (
           <div
             key={key}
-            className="rounded-2xl p-6 shadow-lg border-0 mb-8 bg-white dark:bg-gray-900"
+            className="rounded-2xl p-6 shadow-lg border-0 mb-8 bg-white"
             style={{
               boxShadow: '0 2px 16px 0 rgba(0,0,0,0.06)',
             }}
@@ -443,18 +533,19 @@ const FieldTest = () => {
                 style={{
                   fontSize: typography.h2.size,
                   fontWeight: typography.h2.weight,
-                  color: mode === 'dark' ? modeColors.text.primary : stageColors.text.primary
+                  color: stageColors.text.primary
                 }}
               >
                 {t(`fieldTest.sections.${key}.title`)}
               </h2>
               <button
                 onClick={() => setModalSection(key)}
-                className="p-1 text-cyan-600 dark:text-cyan-300 hover:opacity-80 transition-all"
+                className="p-1 text-cyan-600 hover:opacity-80 transition-all"
                 aria-label={t('fieldTest.example.show')}
               >
                 <MdHelpOutline size={24} />
               </button>
+              <StatusTag status={getSectionStatus(section)} />
             </div>
             <p className="mb-6 text-md text-black leading-relaxed">
               {sectionShortDescriptions[key]}
@@ -463,7 +554,7 @@ const FieldTest = () => {
               <h3
                 className="text-xl font-bold mb-2"
                 style={{
-                  color: mode === 'dark' ? modeColors.text.primary : stageColors.text.primary,
+                  color: stageColors.text.primary,
                   fontSize: typography.h3.size,
                   lineHeight: typography.h3.lineHeight
                 }}
@@ -501,23 +592,22 @@ const FieldTest = () => {
         );
       })}
 
-      {/* Divider visual entre DECIDE e resultados/criterios */}
       <div className="w-full flex items-center my-12">
-        <hr className="flex-1 border-t-2 border-gray-200 dark:border-gray-700" />
-        <span className="mx-4 text-gray-400 dark:text-gray-500 font-semibold uppercase tracking-wider" style={{ fontSize: 14 }}>
+        <hr className="flex-1 border-t-2 border-gray-200" />
+        <span className="mx-4 text-gray-400 font-semibold uppercase tracking-wider" style={{ fontSize: 14 }}>
           {t('fieldTest.resultsAndCriteriaDivider')}
         </span>
-        <hr className="flex-1 border-t-2 border-gray-200 dark:border-gray-700" />
+        <hr className="flex-1 border-t-2 border-gray-200" />
       </div>
 
-      {/* Results Summary Section */}
-      <div className="rounded-2xl p-6 shadow-lg border-0 mb-8 bg-white dark:bg-gray-900">
-        <h2 className="capitalize mb-2" style={{
+      <div className="rounded-2xl p-6 shadow-lg border-0 mb-8 bg-white">
+        <h2 className="flex items-end text-left leading-tight mb-2" style={{
           fontSize: typography.h2.size,
           fontWeight: typography.h2.weight,
-          color: mode === 'dark' ? modeColors.text.primary : stageColors.text.primary
+          color: stageColors.text.primary
         }}>
           {t('fieldTest.resultsSummary.title')}
+          <StatusTag status={getResultsSummaryStatus()} />
         </h2>
         <p className="mb-6 text-md text-black leading-relaxed">
           {t('fieldTest.resultsSummary.description')}
@@ -527,9 +617,9 @@ const FieldTest = () => {
           onChange={handleResultsSummaryChange}
           className="w-full px-4 py-3 rounded-lg border resize-y min-h-[120px]"
           style={{
-            backgroundColor: mode === 'dark' ? modeColors.background.input : stageColors.background.input,
-            borderColor: mode === 'dark' ? modeColors.border.light : stageColors.border.light,
-            color: mode === 'dark' ? modeColors.text.primary : stageColors.text.primary,
+            backgroundColor: stageColors.background.input,
+            borderColor: stageColors.border.light,
+            color: stageColors.text.primary,
             fontSize: typography.body.medium.size,
             lineHeight: typography.body.medium.lineHeight
           }}
@@ -537,43 +627,43 @@ const FieldTest = () => {
         />
       </div>
 
-      {/* Completion Criteria Section */}
-      <div className="rounded-2xl p-6 shadow-lg border-0 mb-8 bg-white dark:bg-gray-900">
-        <h2 className="capitalize mb-2" style={{
+      <div className="rounded-2xl p-6 shadow-lg border-0 mb-8 bg-white">
+        <h2 className="flex items-end text-left leading-tight mb-2" style={{
           fontSize: typography.h2.size,
           fontWeight: typography.h2.weight,
-          color: mode === 'dark' ? modeColors.text.primary : stageColors.text.primary
+          color: stageColors.text.primary
         }}>
           {t('fieldTest.completionCriteria.title')}
+          <StatusTag status={getCompletionCriteriaStatus()} />
         </h2>
         <p className="mb-6 text-md text-black leading-relaxed">
           {t('fieldTest.completionCriteria.description')}
         </p>
         <div className="space-y-4">
-          {(testData.completionCriteria && testData.completionCriteria.length > 0 ? testData.completionCriteria : criteriaDefault).map((criterion) => (
+          {(testData.completionCriteria && testData.completionCriteria.length > 0 ? testData.completionCriteria : criteriaDefault).map((criterion, index) => (
             <div
-              key={criterion.id}
+              key={criterion.criteria}
               className={`flex items-center gap-4 p-3 border rounded-xl mb-2 shadow transition-all duration-300 bg-white cursor-pointer hover:shadow-lg`}
               style={{
-                borderColor: mode === 'dark' ? modeColors.border.light : stageColors.border.light,
-                color: mode === 'dark' ? modeColors.text.primary : stageColors.text.primary,
+                borderColor: stageColors.border.light,
+                color: stageColors.text.primary,
                 minHeight: 48
               }}
-              onClick={() => handleCriteriaToggle(criterion.id)}
+              onClick={() => handleCriteriaToggle(criterion.criteria)}
               tabIndex={0}
               role="button"
-              onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') handleCriteriaToggle(criterion.id); }}
+              onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') handleCriteriaToggle(criterion.criteria); }}
             >
               <input
                 type="checkbox"
                 checked={criterion.met}
-                onChange={() => handleCriteriaToggle(criterion.id)}
+                onChange={() => handleCriteriaToggle(criterion.criteria)}
                 className="w-5 h-5 cursor-pointer"
                 style={{ accentColor: stageColors.background.button.primary }}
                 onClick={e => e.stopPropagation()}
               />
               <span style={{ fontSize: typography.body.medium.size, lineHeight: typography.body.medium.lineHeight }}>
-                {t(`fieldTest.completionCriteria.criterion${criterion.id}`)}
+                {t(`fieldTest.completionCriteria.criterion${index + 1}`)}
               </span>
             </div>
           ))}
@@ -585,7 +675,6 @@ const FieldTest = () => {
   );
 };
 
-// Helper functions for section rendering
 const getSectionItemsKey = (section: string): string => {
   const keys: Record<string, string> = {
     determine: 'objectives',

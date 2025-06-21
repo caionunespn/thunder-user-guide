@@ -95,10 +95,12 @@ export interface ThunderData {
     medium: {
       images: UploadedFile[];
       video: UploadedFile;
+      finalVideo: UploadedFile;
     },
     high: {
       images: UploadedFile[];
       video: UploadedFile;
+      finalVideo: UploadedFile;
     }
   }
 }

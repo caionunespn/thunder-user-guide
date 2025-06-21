@@ -62,9 +62,6 @@ const About = () => {
             {t('about.description2')}
           </p>
           <p className="mb-6" style={{ fontSize: typography.body.large.size, lineHeight: typography.body.large.lineHeight, color: colors.text.black }}>
-            {t('about.description3')}
-          </p>
-          <p className="mb-6" style={{ fontSize: typography.body.large.size, lineHeight: typography.body.large.lineHeight, color: colors.text.black }}>
             {t('about.description4')}
           </p>
           <h2 className="text-center mb-6" style={{ fontSize: typography.h3.size, fontWeight: typography.h3.weight, lineHeight: typography.h3.lineHeight, color: colors.text.primary }}>{t('about.phasesTitle')}</h2>
