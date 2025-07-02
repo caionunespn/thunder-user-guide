@@ -30,14 +30,15 @@ export default defineConfig({
       viteStaticCopy({
         targets: [
           {
-            src: path.resolve(__dirname, 'public/assets'),
-            dest: '' // vai copiar para dist/assets
+            src: '../../public/assets/**/*',
+            dest: 'assets'
           },
           {
-            src: path.resolve(__dirname, 'public/icons'),
-            dest: 'icons' // vai copiar para dist/icons
+            src: '../../public/icons/*',
+            dest: 'icons'
           }
-        ]
+        ],
+        silent: false
       })
     ]
   }

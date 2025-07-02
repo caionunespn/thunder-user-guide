@@ -15,7 +15,9 @@
     "preview": "electron-vite preview",
     "prod": "electron-vite preview",
     "postinstall": "electron-builder install-app-deps",
-    "build:all": "rm -rf dist dist-electron release && yarn build && electron-builder -mwl"
+    "build:all": "rm -rf dist dist-electron release && yarn build && electron-builder -mwl",
+    "build:win": "build-win.bat",
+    "build:win:ps": "powershell -ExecutionPolicy Bypass -File ./build-win.ps1"
   },
   "dependencies": {
     "@axe-core/react": "^4.8.5",
